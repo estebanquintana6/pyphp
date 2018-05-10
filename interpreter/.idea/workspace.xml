@@ -14,8 +14,8 @@
       <file leaf-file-name="phpparser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/phpparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="240" column="20" lean-forward="true" selection-start-line="240" selection-start-column="20" selection-end-line="240" selection-end-column="20" />
+            <state relative-caret-position="159">
+              <caret line="218" column="36" lean-forward="false" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -34,18 +34,8 @@
       <file leaf-file-name="phplexer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phplexer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2618">
+            <state relative-caret-position="2051">
               <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phplexer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/phplexer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1897">
-              <caret line="7" column="33" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,9 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>declaration</find>
-      <find>STRING</find>
-      <find>PLUSPLUS</find>
       <find>MINUSONE</find>
       <find>assignation</find>
       <find>var_math_assign</find>
@@ -89,9 +76,12 @@
       <find>varAssignation</find>
       <find>BOOLE</find>
       <find>var</find>
-      <find>expression</find>
-      <find>assignment-expr</find>
       <find>+</find>
+      <find>assignment-expr</find>
+      <find>math-operator</find>
+      <find>expression</find>
+      <find>get_values</find>
+      <find>assign</find>
     </findStrings>
     <replaceStrings>
       <replace>node</replace>
@@ -110,13 +100,13 @@
         <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/example2.php" />
         <option value="$PROJECT_DIR$/../../interpreter/phpparser.py" />
-        <option value="$PROJECT_DIR$/phpparser.py" />
         <option value="$PROJECT_DIR$/example.php" />
         <option value="$PROJECT_DIR$/phplexer.py" />
+        <option value="$PROJECT_DIR$/phpparser.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="1080" />
     <option name="height" value="848" />
@@ -272,7 +262,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -577,14 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phplexer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2618">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -593,10 +575,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/phplexer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2051">
+          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/phpparser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="240" column="20" lean-forward="true" selection-start-line="240" selection-start-column="20" selection-end-line="240" selection-end-column="20" />
+        <state relative-caret-position="159">
+          <caret line="218" column="36" lean-forward="false" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
           <folding />
         </state>
       </provider>

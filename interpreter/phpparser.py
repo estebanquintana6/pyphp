@@ -2,6 +2,35 @@ import ply.yacc as yacc
 import phplexer as lexer
 
 
+class Stack:
+    def __init__(self, list):
+        self.list = list
+
+    def push(self, tup):
+        self.list.append(tup)
+
+    def pop(self):
+        self.list.pop()
+
+    def delete(self, name):
+        self.list.remove(name)
+
+    def find(self, name):
+        for item in self.list:
+            if item.variable == name:
+                return item
+        return -1
+
+
+class Variable:
+    def __init__(self, variable='', value='None'):
+        self.variable = variable
+        self.value = value
+
+    def to_string(self):
+        return str('name: ' + self.variable + ' value: ' + repr(self.value))
+
+
 class Node:
     def __init__(self, token, value=None, ntype=None, children=None):
             self.token = token
@@ -176,28 +205,63 @@ def p_expression(p):
     """
     expression : basic-expr
                 | assignment-expr SCOLO
+                | var-assign SCOLO
                 | comparison-expr
     """
     p[0] = Node('expression', None, None, [p[1]])
 
 
+def p_string(p):
+    """
+    string : STRING
+    """
+    T = Node('string', p[1])
+    p[0] = Node('string', None, p[1], [T])
+
+
 def p_basic(p):
     """
-    basic-expr : ID
-                | NUMBER
-                | STRING
+    basic-expr : variable
+                | number
+                | string
     """
     v = Node('BASIC', p[1])
-    p[0] = Node('basic-expr', None, None, [v])
+    p[0] = Node('basic-expr', None, p[1].value, [v])
 
 
 def p_id(p):
     """
-    identifier : ID
-                | NUMBER
+    identifier : variable
+                | number
     """
     T = Node('ID', p[1])
-    p[0] = Node('identifier', None, None, [T])
+    p[0] = Node('identifier', None, p[1].value , [T])
+
+
+def p_number(p):
+    """
+    number : NUMBER
+    """
+    T = Node('number', p[1])
+    p[0] = Node('number',p[1], 'Num')
+
+
+def p_variable(p):
+    """
+    variable : ID
+    """
+    T = Node('ID', p[1])
+    p[0] = Node('variable', p[1], [T])
+
+
+def p_variable_assignment(p):
+    """
+    var-assign : identifier EQ basic-expr
+                | identifier EQ assignment-expr
+    """
+
+    p[0] = Node('var-assign', None, None, [p[1], p[3]])
+
 
 
 def p_assignment_expression(p):
@@ -238,7 +302,6 @@ def p_binary_op(p):
                 | MINUS
                 | MUL
                 | DIV
-                | EQ
     """
     T = Node(p[1], p[1])
     p[0] = Node('bin_op', None, None, [T])
@@ -254,6 +317,7 @@ def p_if_statement(p):
         p[0] = Node('if-statement', None, None, [T, p[3], p[5]])
     else:
         p[0] = Node('if-statement', None, None, [T, p[3], p[5], p[6]])
+
 
 def p_else_statement(p):
     """
