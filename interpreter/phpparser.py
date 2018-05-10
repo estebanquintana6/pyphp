@@ -104,16 +104,23 @@ def p_declaration(p):
     """
     p[0] = Node("declaration", None, None, [p[1]])
 
+def p_varDeclaration2(p):
+    """
+    varDeclaration : VAR ID EQ expression SCOLO
+    """
+    p[0] = Node('varDeclaration', [p[2], p[2]], None, None)
 
 def p_varDeclaration(p):
     """
     varDeclaration : VAR ID SCOLO
-                    | VAR ID EQ expression SCOLO
     """
-    if len(p) == 6:
-        p[0] = Node('varDeclaration', [p[2], p[2]], None, None)
-    else:
-        p[0] = Node('varDeclaration', [p[2]], None, None)
+    variable = Variable()
+
+    if stack.find(p[2]) == -1:
+        variable.variable = p[2]
+        stack.push(variable)
+
+    p[0] = Node('varDeclaration', [p[2]], None, None)
 
 
 def p_funDeclaration(p):
@@ -226,7 +233,7 @@ def p_basic(p):
                 | string
     """
     v = Node('BASIC', p[1])
-    p[0] = Node('basic-expr', None, p[1].value, [v])
+    p[0] = Node('basic-expr', p[1].value, [v])
 
 
 def p_id(p):
@@ -254,10 +261,27 @@ def p_variable(p):
     p[0] = Node('variable', p[1], [T])
 
 
+def p_constant_assignment(p):
+    """
+    var-assign : variable EQ basic-expr
+    """
+    p[0] = Node('var-assign', None, None, [p[1], p[3]])
+    variable = Variable()
+    varname = ''
+    varname += p[1].value
+
+    if stack.find(varname) == -1:
+        variable.variable = varname
+        variable.value = p[3].value
+        stack.push(variable)
+    else:
+        tmp = stack.find(varname)
+        tmp.value = p[3].value
+
+
 def p_variable_assignment(p):
     """
-    var-assign : identifier EQ basic-expr
-                | identifier EQ assignment-expr
+    var-assign : variable EQ assignment-expr
     """
 
     p[0] = Node('var-assign', None, None, [p[1], p[3]])
@@ -327,8 +351,13 @@ def p_else_statement(p):
     p[0] = Node('else-statement', None, None, [T, p[2]])
 
 
+stack = Stack([])
 parser = yacc.yacc(debug=True)
 
 with open('example.php', 'r') as file:
     s = file.read()
     parser.parse(s)
+
+print("Stack\n")
+for item in stack.list[::-1]:
+    print(item.__dict__)

@@ -14,8 +14,8 @@
       <file leaf-file-name="phpparser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/phpparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="218" column="36" lean-forward="false" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
+            <state relative-caret-position="285">
+              <caret line="292" column="32" lean-forward="false" selection-start-line="292" selection-start-column="22" selection-end-line="292" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -24,8 +24,8 @@
       <file leaf-file-name="example.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+            <state relative-caret-position="126">
+              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -57,7 +57,6 @@
       <find>var_math_assign</find>
       <find>- 1</find>
       <find>x++</find>
-      <find>basic-expr</find>
       <find>string</find>
       <find>identifier EQ identifier</find>
       <find>StackRow</find>
@@ -76,12 +75,13 @@
       <find>varAssignation</find>
       <find>BOOLE</find>
       <find>var</find>
-      <find>+</find>
       <find>assignment-expr</find>
       <find>math-operator</find>
       <find>expression</find>
       <find>get_values</find>
       <find>assign</find>
+      <find>basic-expr</find>
+      <find>+</find>
     </findStrings>
     <replaceStrings>
       <replace>node</replace>
@@ -100,8 +100,8 @@
         <option value="$PROJECT_DIR$/node.py" />
         <option value="$PROJECT_DIR$/example2.php" />
         <option value="$PROJECT_DIR$/../../interpreter/phpparser.py" />
-        <option value="$PROJECT_DIR$/example.php" />
         <option value="$PROJECT_DIR$/phplexer.py" />
+        <option value="$PROJECT_DIR$/example.php" />
         <option value="$PROJECT_DIR$/phpparser.py" />
       </list>
     </option>
@@ -314,7 +314,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="2" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -567,14 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/phplexer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2051">
@@ -583,10 +575,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/example.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/phpparser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="218" column="36" lean-forward="false" selection-start-line="218" selection-start-column="36" selection-end-line="218" selection-end-column="36" />
+        <state relative-caret-position="285">
+          <caret line="292" column="32" lean-forward="false" selection-start-line="292" selection-start-column="22" selection-end-line="292" selection-end-column="32" />
           <folding />
         </state>
       </provider>
