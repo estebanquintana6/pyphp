@@ -7,11 +7,10 @@
     var z;
     var a;
     if(x == 2){
-        x = x + 2;
     }
   }
 
-  function exe(hola; hello){
+  function exe(hola, hello){
     var o;
     o = o + 5;
 

@@ -2,8 +2,6 @@ import ply.yacc as yacc
 import phplexer as lexer
 
 
-errors = []
-
 class Node:
     def __init__(self, token, value=None, ntype=None, children=None):
             self.token = token
@@ -24,36 +22,6 @@ class Node:
             for child in self.children:
                 print(self.get_values(), '->', child.get_values())
                 child.debug()
-
-
-class Stack:
-    def __init__(self, list):
-        self.list = list
-
-    def push(self, tup):
-        self.list.append(tup)
-
-    def pop(self):
-        self.list.pop()
-
-    def delete(self, name):
-        self.list.remove(name)
-
-    def find(self, name):
-        for item in self.list:
-            if item.variable == name:
-                return item
-        return -1
-
-
-class StackRow:
-    def __init__(self, variable='', value='None', type='None'):
-        self.variable = variable
-        self.value = value
-        self.type = type
-
-    def to_string(self):
-        return str('name: ' + self.variable + ' value: ' + repr(self.value) + ' type: '+ self.type)
 
 
 tokens = lexer.tokens
@@ -207,20 +175,11 @@ def p_statement(p):
 def p_expression(p):
     """
     expression : basic-expr
-    |
                 | assignment-expr SCOLO
                 | comparison-expr
     """
     p[0] = Node('expression', None, None, [p[1]])
 
-
-def p_constant(p):
-    """
-    constant : NUMBER
-             | STRING
-    """
-    v = Node('CONSTANT', p[1])
-    p[0] = Node('constant', None, None, [v])
 
 def p_basic(p):
     """
@@ -241,31 +200,6 @@ def p_id(p):
     p[0] = Node('identifier', None, None, [T])
 
 
-def p_constant_assignation(p):
-    """
-    constant-assignation : identifier EQ constant
-    """
-    variable = StackRow()
-    assign = Node('=', p[2])
-    p[0] = Node('variable assignation', p[4].value, p[4].type, [p[1], assign, p[4]])
-    name = ''
-
-    for i in range(len(p[1].children)):
-        name += p[1].children[i].value
-
-    variable.variable = name
-    variable.type = p[3].type
-
-    if variableStack.find(name) == -1:
-        if(variable.value is None or variable.type is None):
-            errors.append("variable" + variable.variable + " has a declaration error")
-        else:
-            variableStack.push(variable)
-    else:
-        temp = variableStack.find(name)
-        temp.value = p[3].value
-        temp.type = p[3].type
-
 def p_assignment_expression(p):
     """
     assignment-expr : identifier  math-operator basic-expr
@@ -274,7 +208,7 @@ def p_assignment_expression(p):
     if len(p) == 4:
         p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
     else:
-        p[0] = Node('assignment-expr', None, None, [p[1]])
+        p[0] = Node('assignment-expr', None, None, [p[1], p[2]])
 
 
 def p_comparison_expr(p):
@@ -298,31 +232,6 @@ def p_comparison_operators(p):
     p[0] = Node('comp-operator', None, None, [T])
 
 
-def p_varAssignation(p):
-    """
-    varAssignation : ID EQ constant SCOLO
-    """
-    variable = StackRow()
-    assign = Node('=', p[2])
-    p[0] = Node('variable assignation', p[4].value, p[4].type, [p[1], assign, p[4]])
-    name = ''
-
-    for i in range(len(p[1].children)):
-        name += p[1].children[i].value
-
-    variable.variable = name
-    variable.type = p[3].type
-
-    if variableStack.find(name) == -1:
-        if(variable.value is None or variable.type is None):
-            errors.append("variable" + variable.variable + " has a declaration error")
-        else:
-            variableStack.push(variable)
-    else:
-        temp = variableStack.find(name)
-        temp.value = p[3].value
-        temp.type = p[3].type
-
 def p_binary_op(p):
     """
     math-operator : PLUS
@@ -338,26 +247,22 @@ def p_binary_op(p):
 def p_if_statement(p):
     """
     if-statement : IF LPAREN expression RPAREN block
-                | IF LPAREN expression RPAREN block ELSE else-statement
+                | IF LPAREN expression RPAREN block else-statement
     """
-
+    T = Node('IF', p[1])
     if len(p) == 6:
-        T = Node('IF', p[1])
         p[0] = Node('if-statement', None, None, [T, p[3], p[5]])
     else:
-        T1 = Node('IF', p[1])
-        T2 = Node('ELSE', p[4])
-        p[0] = Node('if-else-statement', None, None, [T1, p[3], p[5], T2, p[7]])
-
+        p[0] = Node('if-statement', None, None, [T, p[3], p[5], p[6]])
 
 def p_else_statement(p):
     """
-    else-statement : block
+    else-statement : ELSE block
     """
-    p[0] = Node('else-statement', None, None, [p[1]])
+    T = Node('ELSE', p[1])
+    p[0] = Node('else-statement', None, None, [T, p[2]])
 
 
-variableStack = Stack([])
 parser = yacc.yacc(debug=True)
 
 with open('example.php', 'r') as file:
