@@ -11,17 +11,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="phpparser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="phpparser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phpparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="292" column="32" lean-forward="false" selection-start-line="292" selection-start-column="22" selection-end-line="292" selection-end-column="32" />
+            <state relative-caret-position="294">
+              <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="example.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="example.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -34,8 +34,8 @@
       <file leaf-file-name="phplexer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/phplexer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2051">
-              <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+            <state relative-caret-position="-7">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,17 +52,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>MINUSONE</find>
-      <find>assignation</find>
-      <find>var_math_assign</find>
-      <find>- 1</find>
       <find>x++</find>
       <find>string</find>
       <find>identifier EQ identifier</find>
       <find>StackRow</find>
       <find>sum</find>
       <find>const-var-asign</find>
-      <find>number</find>
       <find>bool</find>
       <find>+ 1</find>
       <find>math_sum</find>
@@ -80,8 +75,13 @@
       <find>expression</find>
       <find>get_values</find>
       <find>assign</find>
+      <find>variable</find>
+      <find>error</find>
       <find>basic-expr</find>
+      <find>var-assign</find>
+      <find>identifier</find>
       <find>+</find>
+      <find>number</find>
     </findStrings>
     <replaceStrings>
       <replace>node</replace>
@@ -267,8 +267,8 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2328125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3635359" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3635359" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3635359" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -569,8 +569,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/phplexer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2051">
-          <caret line="131" column="0" lean-forward="true" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+        <state relative-caret-position="-7">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -579,14 +587,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/phpparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="292" column="32" lean-forward="false" selection-start-line="292" selection-start-column="22" selection-end-line="292" selection-end-column="32" />
           <folding />
         </state>
       </provider>

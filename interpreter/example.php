@@ -5,10 +5,10 @@
     var a;
     z = 1;
     a = 5;
-    a = a + 2;
+    a = 5 + 2 + 2;
 
-    if(x == 2){
-        if( y == 5){
+    if(a == 2){
+        if( z == 5){
            var x;
            x = "Hola";
         }

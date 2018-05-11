@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftORleftANDnonassocCOMPnonassocEQGREATERLESSleftPLUSMINUSleftMULDIVrightNOTrightLBRACKETAND BOOL COMMA COMMENT COMP DIV ELSE END EQ FOR FUNCTION GREATER GREATER_OR_EQUAL ID IF LBRACKET LESS LPAREN MINUS MUL NOT NUMBER OR PLUS RBRACKET RPAREN SCOLO SMALLER_OR_EQUAL START STARTCLOSE STRING VAR WHITESPACE XOR\n    program : declaration-list\n    \n    declaration-list : declaration\n                   | declaration declaration-list\n    \n    declaration : funDeclaration\n                | varDeclaration\n    \n    varDeclaration : VAR ID EQ expression SCOLO\n    \n    varDeclaration : VAR ID SCOLO\n    \n    funDeclaration : FUNCTION function\n    \n    function : ID parameters block\n    \n    parameters : LPAREN RPAREN\n               | LPAREN paramList RPAREN\n    \n    paramList : parameter\n                   | parameter COMMA paramList\n    \n    parameter : ID\n    \n    block : LBRACKET RBRACKET\n          | LBRACKET statement-list RBRACKET\n    \n    statement-list : statement\n                   | statement statement-list\n    \n    statement : declaration\n              | expression\n              | if-statement\n    \n    expression : basic-expr\n                | assignment-expr SCOLO\n                | var-assign SCOLO\n                | comparison-expr\n    \n    string : STRING\n    \n    basic-expr : variable\n                | number\n                | string\n    \n    identifier : variable\n                | number\n    \n    number : NUMBER\n    \n    variable : ID\n    \n    var-assign : variable EQ basic-expr\n    \n    var-assign : variable EQ assignment-expr\n    \n    assignment-expr : identifier  math-operator basic-expr\n                     | identifier math-operator assignment-expr\n    \n    comparison-expr : basic-expr comp-operator basic-expr\n                          | basic-expr comp-operator comparison-expr\n    \n    comp-operator : GREATER\n                    | LESS\n                    | GREATER_OR_EQUAL\n                    | SMALLER_OR_EQUAL\n                    | COMP\n                    | NOT\n    \n    math-operator : PLUS\n                | MINUS\n                | MUL\n                | DIV\n    \n    if-statement : IF LPAREN expression RPAREN block\n                | IF LPAREN expression RPAREN block else-statement\n    \n    else-statement : ELSE block\n    '
+_lr_signature = 'leftORleftANDnonassocCOMPnonassocEQGREATERLESSleftPLUSMINUSleftMULDIVrightNOTrightLBRACKETAND BOOL COMMA COMMENT COMP DIV ELSE END EQ FOR FUNCTION GREATER GREATER_OR_EQUAL ID IF LBRACKET LESS LPAREN MINUS MUL NOT NUMBER OR PLUS RBRACKET RPAREN SCOLO SMALLER_OR_EQUAL START STARTCLOSE STRING VAR WHITESPACE XOR\n    program : declaration-list\n    \n    declaration-list : declaration\n                   | declaration declaration-list\n    \n    declaration : funDeclaration\n                | varDeclaration\n    \n    varDeclaration : VAR ID EQ expression SCOLO\n    \n    varDeclaration : VAR ID SCOLO\n    \n    funDeclaration : FUNCTION function\n    \n    function : ID parameters block\n    \n    parameters : LPAREN RPAREN\n               | LPAREN paramList RPAREN\n    \n    paramList : parameter\n                   | parameter COMMA paramList\n    \n    parameter : ID\n    \n    block : LBRACKET RBRACKET\n          | LBRACKET statement-list RBRACKET\n    \n    statement-list : statement\n                   | statement statement-list\n    \n    statement : declaration\n              | expression\n              | if-statement\n    \n    expression : basic-expr\n                | assignment-expr SCOLO\n                | var-assign SCOLO\n                | comparison-expr\n    \n    string : STRING\n    \n    basic-expr : variable\n                | number\n                | string\n    \n    identifier :  number\n    \n    number : NUMBER\n    \n    variable : ID\n    \n    var-assign : variable EQ basic-expr\n    \n    var-assign : variable EQ assignment-expr\n    \n    assignment-expr : identifier  math-operator identifier\n                     | identifier math-operator assignment-expr\n    \n    comparison-expr : basic-expr comp-operator basic-expr\n                          | basic-expr comp-operator comparison-expr\n    \n    comp-operator : GREATER\n                    | LESS\n                    | GREATER_OR_EQUAL\n                    | SMALLER_OR_EQUAL\n                    | COMP\n                    | NOT\n    \n    math-operator : PLUS\n                | MINUS\n                | MUL\n                | DIV\n    \n    if-statement : IF LPAREN expression RPAREN block\n                | IF LPAREN expression RPAREN block else-statement\n    \n    else-statement : ELSE block\n    '
     
-_lr_action_items = {'LESS':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,46,-28,-27,-33,-26,46,-28,-27,]),'NUMBER':([3,5,8,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,63,64,65,66,74,75,77,],[-5,-4,-8,23,-7,23,-9,-29,-32,-22,-28,-27,-33,-25,-26,23,-19,-21,-15,-20,-40,-42,-44,-41,23,-45,-43,-24,23,-23,23,-46,-48,-49,-47,-6,23,-16,-38,-28,-27,-39,-50,-51,-52,]),'LBRACKET':([12,18,41,73,76,],[16,-10,-11,16,16,]),'MUL':([23,26,27,29,31,69,],[-32,-31,-30,55,-33,-30,]),'DIV':([23,26,27,29,31,69,],[-32,-31,-30,56,-33,-30,]),'MINUS':([23,26,27,29,31,69,],[-32,-31,-30,57,-33,-30,]),'RPAREN':([13,19,20,21,22,23,24,26,27,31,32,33,50,52,62,63,64,65,66,72,],[18,41,-12,-14,-29,-32,-22,-28,-27,-33,-25,-26,-24,-23,-13,-38,-28,-27,-39,73,]),'GREATER_OR_EQUAL':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,44,-28,-27,-33,-26,44,-28,-27,]),'ID':([1,3,5,7,8,13,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,63,64,65,66,74,75,77,],[9,-5,-4,11,-8,21,31,-7,31,-9,-29,-32,-22,-28,-27,-33,-25,-26,31,-19,-21,-15,-20,21,-40,-42,-44,-41,31,-45,-43,-24,31,-23,31,-46,-48,-49,-47,-6,31,-16,-38,-28,-27,-39,-50,-51,-52,]),'COMMA':([20,21,],[42,-14,]),'PLUS':([23,26,27,29,31,69,],[-32,-31,-30,54,-33,-30,]),'$end':([2,3,4,5,6,8,10,15,17,39,58,61,],[0,-5,-1,-4,-2,-8,-3,-7,-9,-15,-6,-16,]),'FUNCTION':([0,3,5,6,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[1,-5,-4,1,-8,-7,1,-9,-29,-32,-22,-28,-27,-33,-25,-26,1,-19,-21,-15,-20,-24,-23,-6,-16,-38,-28,-27,-39,-50,-51,-52,]),'STRING':([3,5,8,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,63,64,65,66,74,75,77,],[-5,-4,-8,33,-7,33,-9,-29,-32,-22,-28,-27,-33,-25,-26,33,-19,-21,-15,-20,-40,-42,-44,-41,33,-45,-43,-24,33,-23,33,-46,-48,-49,-47,-6,33,-16,-38,-28,-27,-39,-50,-51,-52,]),'SCOLO':([11,22,23,24,25,26,27,28,30,31,32,33,50,52,63,64,65,66,67,68,69,70,71,],[15,-29,-32,-22,50,-28,-27,52,58,-33,-25,-26,-24,-23,-38,-28,-27,-39,-34,-35,-27,-36,-37,]),'COMP':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,45,-28,-27,-33,-26,45,-28,-27,]),'ELSE':([39,61,74,],[-15,-16,76,]),'LPAREN':([9,36,],[13,60,]),'VAR':([0,3,5,6,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[7,-5,-4,7,-8,-7,7,-9,-29,-32,-22,-28,-27,-33,-25,-26,7,-19,-21,-15,-20,-24,-23,-6,-16,-38,-28,-27,-39,-50,-51,-52,]),'EQ':([11,27,31,],[14,51,-33,]),'SMALLER_OR_EQUAL':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,49,-28,-27,-33,-26,49,-28,-27,]),'IF':([3,5,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[-5,-4,-8,-7,36,-9,-29,-32,-22,-28,-27,-33,-25,-26,36,-19,-21,-15,-20,-24,-23,-6,-16,-38,-28,-27,-39,-50,-51,-52,]),'GREATER':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,43,-28,-27,-33,-26,43,-28,-27,]),'NOT':([22,23,24,26,27,31,33,63,64,65,],[-29,-32,48,-28,-27,-33,-26,48,-28,-27,]),'RBRACKET':([3,5,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,38,39,40,50,52,58,59,61,63,64,65,66,74,75,77,],[-5,-4,-8,-7,39,-9,-29,-32,-22,-28,-27,-33,-25,-26,-17,-19,-21,61,-15,-20,-24,-23,-6,-18,-16,-38,-28,-27,-39,-50,-51,-52,]),}
+_lr_action_items = {'LESS':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,46,-28,-27,-32,-26,46,-28,-27,]),'NUMBER':([3,5,8,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,63,64,65,66,74,75,77,],[-5,-4,-8,23,-7,23,-9,-29,-31,-22,-28,-27,-32,-25,-26,23,-19,-21,-15,-20,-39,-41,-43,-40,23,-44,-42,-24,23,-23,23,-45,-47,-48,-46,-6,23,-16,-37,-28,-27,-38,-49,-50,-51,]),'LBRACKET':([12,18,41,73,76,],[16,-10,-11,16,16,]),'MUL':([23,26,29,69,71,],[-31,-30,55,55,-30,]),'DIV':([23,26,29,69,71,],[-31,-30,56,56,-30,]),'MINUS':([23,26,29,69,71,],[-31,-30,57,57,-30,]),'RPAREN':([13,19,20,21,22,23,24,26,27,31,32,33,50,52,62,63,64,65,66,72,],[18,41,-12,-14,-29,-31,-22,-28,-27,-32,-25,-26,-24,-23,-13,-37,-28,-27,-38,73,]),'GREATER_OR_EQUAL':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,44,-28,-27,-32,-26,44,-28,-27,]),'ID':([1,3,5,7,8,13,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,42,43,44,45,46,47,48,49,50,51,52,58,60,61,63,64,65,66,74,75,77,],[9,-5,-4,11,-8,21,31,-7,31,-9,-29,-31,-22,-28,-27,-32,-25,-26,31,-19,-21,-15,-20,21,-39,-41,-43,-40,31,-44,-42,-24,31,-23,-6,31,-16,-37,-28,-27,-38,-49,-50,-51,]),'COMMA':([20,21,],[42,-14,]),'PLUS':([23,26,29,69,71,],[-31,-30,54,54,-30,]),'$end':([2,3,4,5,6,8,10,15,17,39,58,61,],[0,-5,-1,-4,-2,-8,-3,-7,-9,-15,-6,-16,]),'FUNCTION':([0,3,5,6,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[1,-5,-4,1,-8,-7,1,-9,-29,-31,-22,-28,-27,-32,-25,-26,1,-19,-21,-15,-20,-24,-23,-6,-16,-37,-28,-27,-38,-49,-50,-51,]),'STRING':([3,5,8,14,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,43,44,45,46,47,48,49,50,51,52,58,60,61,63,64,65,66,74,75,77,],[-5,-4,-8,33,-7,33,-9,-29,-31,-22,-28,-27,-32,-25,-26,33,-19,-21,-15,-20,-39,-41,-43,-40,33,-44,-42,-24,33,-23,-6,33,-16,-37,-28,-27,-38,-49,-50,-51,]),'SCOLO':([11,22,23,24,25,26,27,28,30,31,32,33,50,52,63,64,65,66,67,68,69,70,71,],[15,-29,-31,-22,50,-28,-27,52,58,-32,-25,-26,-24,-23,-37,-28,-27,-38,-33,-34,-35,-36,-30,]),'COMP':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,45,-28,-27,-32,-26,45,-28,-27,]),'ELSE':([39,61,74,],[-15,-16,76,]),'LPAREN':([9,36,],[13,60,]),'VAR':([0,3,5,6,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[7,-5,-4,7,-8,-7,7,-9,-29,-31,-22,-28,-27,-32,-25,-26,7,-19,-21,-15,-20,-24,-23,-6,-16,-37,-28,-27,-38,-49,-50,-51,]),'EQ':([11,27,31,],[14,51,-32,]),'SMALLER_OR_EQUAL':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,49,-28,-27,-32,-26,49,-28,-27,]),'IF':([3,5,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,39,40,50,52,58,61,63,64,65,66,74,75,77,],[-5,-4,-8,-7,36,-9,-29,-31,-22,-28,-27,-32,-25,-26,36,-19,-21,-15,-20,-24,-23,-6,-16,-37,-28,-27,-38,-49,-50,-51,]),'GREATER':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,43,-28,-27,-32,-26,43,-28,-27,]),'NOT':([22,23,24,26,27,31,33,63,64,65,],[-29,-31,48,-28,-27,-32,-26,48,-28,-27,]),'RBRACKET':([3,5,8,15,16,17,22,23,24,26,27,31,32,33,34,35,37,38,39,40,50,52,58,59,61,63,64,65,66,74,75,77,],[-5,-4,-8,-7,39,-9,-29,-31,-22,-28,-27,-32,-25,-26,-17,-19,-21,61,-15,-20,-24,-23,-6,-18,-16,-37,-28,-27,-38,-49,-50,-51,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'varDeclaration':([0,6,16,34,],[3,3,3,3,]),'paramList':([13,42,],[19,62,]),'number':([14,16,34,47,51,53,60,],[26,26,26,64,26,26,26,]),'comp-operator':([24,63,],[47,47,]),'comparison-expr':([14,16,34,47,60,],[32,32,32,66,32,]),'parameters':([9,],[12,]),'declaration-list':([0,6,],[4,10,]),'program':([0,],[2,]),'assignment-expr':([14,16,34,51,53,60,],[28,28,28,68,71,28,]),'parameter':([13,42,],[20,20,]),'function':([1,],[8,]),'funDeclaration':([0,6,16,34,],[5,5,5,5,]),'string':([14,16,34,47,51,53,60,],[22,22,22,22,22,22,22,]),'math-operator':([29,],[53,]),'basic-expr':([14,16,34,47,51,53,60,],[24,24,24,63,67,70,24,]),'declaration':([0,6,16,34,],[6,6,35,35,]),'variable':([14,16,34,47,51,53,60,],[27,27,27,65,69,69,27,]),'else-statement':([74,],[75,]),'var-assign':([14,16,34,60,],[25,25,25,25,]),'if-statement':([16,34,],[37,37,]),'statement':([16,34,],[34,34,]),'statement-list':([16,34,],[38,59,]),'identifier':([14,16,34,51,53,60,],[29,29,29,29,29,29,]),'expression':([14,16,34,60,],[30,40,40,72,]),'block':([12,73,76,],[17,74,77,]),}
+_lr_goto_items = {'varDeclaration':([0,6,16,34,],[3,3,3,3,]),'paramList':([13,42,],[19,62,]),'number':([14,16,34,47,51,53,60,],[26,26,26,64,26,71,26,]),'comp-operator':([24,63,],[47,47,]),'comparison-expr':([14,16,34,47,60,],[32,32,32,66,32,]),'parameters':([9,],[12,]),'declaration-list':([0,6,],[4,10,]),'program':([0,],[2,]),'assignment-expr':([14,16,34,51,53,60,],[28,28,28,68,70,28,]),'parameter':([13,42,],[20,20,]),'function':([1,],[8,]),'funDeclaration':([0,6,16,34,],[5,5,5,5,]),'string':([14,16,34,47,51,60,],[22,22,22,22,22,22,]),'math-operator':([29,69,],[53,53,]),'basic-expr':([14,16,34,47,51,60,],[24,24,24,63,67,24,]),'declaration':([0,6,16,34,],[6,6,35,35,]),'variable':([14,16,34,47,51,60,],[27,27,27,65,65,27,]),'else-statement':([74,],[75,]),'var-assign':([14,16,34,60,],[25,25,25,25,]),'if-statement':([16,34,],[37,37,]),'statement':([16,34,],[34,34,]),'statement-list':([16,34,],[38,59,]),'identifier':([14,16,34,51,53,60,],[29,29,29,29,69,29,]),'expression':([14,16,34,60,],[30,40,40,72,]),'block':([12,73,76,],[17,74,77,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,56 +27,55 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> declaration-list','program',1,'p_program','phpparser.py',83),
-  ('declaration-list -> declaration','declaration-list',1,'p_declarationlist','phpparser.py',91),
-  ('declaration-list -> declaration declaration-list','declaration-list',2,'p_declarationlist','phpparser.py',92),
-  ('declaration -> funDeclaration','declaration',1,'p_declaration','phpparser.py',102),
-  ('declaration -> varDeclaration','declaration',1,'p_declaration','phpparser.py',103),
-  ('varDeclaration -> VAR ID EQ expression SCOLO','varDeclaration',5,'p_varDeclaration2','phpparser.py',109),
-  ('varDeclaration -> VAR ID SCOLO','varDeclaration',3,'p_varDeclaration','phpparser.py',115),
-  ('funDeclaration -> FUNCTION function','funDeclaration',2,'p_funDeclaration','phpparser.py',128),
-  ('function -> ID parameters block','function',3,'p_function','phpparser.py',136),
-  ('parameters -> LPAREN RPAREN','parameters',2,'p_parameters','phpparser.py',144),
-  ('parameters -> LPAREN paramList RPAREN','parameters',3,'p_parameters','phpparser.py',145),
-  ('paramList -> parameter','paramList',1,'p_parameter_list','phpparser.py',158),
-  ('paramList -> parameter COMMA paramList','paramList',3,'p_parameter_list','phpparser.py',159),
-  ('parameter -> ID','parameter',1,'p_parameter','phpparser.py',170),
-  ('block -> LBRACKET RBRACKET','block',2,'p_block','phpparser.py',178),
-  ('block -> LBRACKET statement-list RBRACKET','block',3,'p_block','phpparser.py',179),
-  ('statement-list -> statement','statement-list',1,'p_statement_list','phpparser.py',193),
-  ('statement-list -> statement statement-list','statement-list',2,'p_statement_list','phpparser.py',194),
-  ('statement -> declaration','statement',1,'p_statement','phpparser.py',204),
-  ('statement -> expression','statement',1,'p_statement','phpparser.py',205),
-  ('statement -> if-statement','statement',1,'p_statement','phpparser.py',206),
-  ('expression -> basic-expr','expression',1,'p_expression','phpparser.py',213),
-  ('expression -> assignment-expr SCOLO','expression',2,'p_expression','phpparser.py',214),
-  ('expression -> var-assign SCOLO','expression',2,'p_expression','phpparser.py',215),
-  ('expression -> comparison-expr','expression',1,'p_expression','phpparser.py',216),
-  ('string -> STRING','string',1,'p_string','phpparser.py',223),
-  ('basic-expr -> variable','basic-expr',1,'p_basic','phpparser.py',231),
-  ('basic-expr -> number','basic-expr',1,'p_basic','phpparser.py',232),
-  ('basic-expr -> string','basic-expr',1,'p_basic','phpparser.py',233),
-  ('identifier -> variable','identifier',1,'p_id','phpparser.py',241),
-  ('identifier -> number','identifier',1,'p_id','phpparser.py',242),
-  ('number -> NUMBER','number',1,'p_number','phpparser.py',250),
-  ('variable -> ID','variable',1,'p_variable','phpparser.py',258),
-  ('var-assign -> variable EQ basic-expr','var-assign',3,'p_constant_assignment','phpparser.py',266),
-  ('var-assign -> variable EQ assignment-expr','var-assign',3,'p_variable_assignment','phpparser.py',282),
-  ('assignment-expr -> identifier math-operator basic-expr','assignment-expr',3,'p_assignment_expression','phpparser.py',291),
-  ('assignment-expr -> identifier math-operator assignment-expr','assignment-expr',3,'p_assignment_expression','phpparser.py',292),
-  ('comparison-expr -> basic-expr comp-operator basic-expr','comparison-expr',3,'p_comparison_expr','phpparser.py',302),
-  ('comparison-expr -> basic-expr comp-operator comparison-expr','comparison-expr',3,'p_comparison_expr','phpparser.py',303),
-  ('comp-operator -> GREATER','comp-operator',1,'p_comparison_operators','phpparser.py',310),
-  ('comp-operator -> LESS','comp-operator',1,'p_comparison_operators','phpparser.py',311),
-  ('comp-operator -> GREATER_OR_EQUAL','comp-operator',1,'p_comparison_operators','phpparser.py',312),
-  ('comp-operator -> SMALLER_OR_EQUAL','comp-operator',1,'p_comparison_operators','phpparser.py',313),
-  ('comp-operator -> COMP','comp-operator',1,'p_comparison_operators','phpparser.py',314),
-  ('comp-operator -> NOT','comp-operator',1,'p_comparison_operators','phpparser.py',315),
-  ('math-operator -> PLUS','math-operator',1,'p_binary_op','phpparser.py',323),
-  ('math-operator -> MINUS','math-operator',1,'p_binary_op','phpparser.py',324),
-  ('math-operator -> MUL','math-operator',1,'p_binary_op','phpparser.py',325),
-  ('math-operator -> DIV','math-operator',1,'p_binary_op','phpparser.py',326),
-  ('if-statement -> IF LPAREN expression RPAREN block','if-statement',5,'p_if_statement','phpparser.py',334),
-  ('if-statement -> IF LPAREN expression RPAREN block else-statement','if-statement',6,'p_if_statement','phpparser.py',335),
-  ('else-statement -> ELSE block','else-statement',2,'p_else_statement','phpparser.py',346),
+  ('program -> declaration-list','program',1,'p_program','phpparser.py',84),
+  ('declaration-list -> declaration','declaration-list',1,'p_declarationlist','phpparser.py',92),
+  ('declaration-list -> declaration declaration-list','declaration-list',2,'p_declarationlist','phpparser.py',93),
+  ('declaration -> funDeclaration','declaration',1,'p_declaration','phpparser.py',103),
+  ('declaration -> varDeclaration','declaration',1,'p_declaration','phpparser.py',104),
+  ('varDeclaration -> VAR ID EQ expression SCOLO','varDeclaration',5,'p_varDeclaration2','phpparser.py',111),
+  ('varDeclaration -> VAR ID SCOLO','varDeclaration',3,'p_varDeclaration','phpparser.py',118),
+  ('funDeclaration -> FUNCTION function','funDeclaration',2,'p_funDeclaration','phpparser.py',131),
+  ('function -> ID parameters block','function',3,'p_function','phpparser.py',139),
+  ('parameters -> LPAREN RPAREN','parameters',2,'p_parameters','phpparser.py',147),
+  ('parameters -> LPAREN paramList RPAREN','parameters',3,'p_parameters','phpparser.py',148),
+  ('paramList -> parameter','paramList',1,'p_parameter_list','phpparser.py',161),
+  ('paramList -> parameter COMMA paramList','paramList',3,'p_parameter_list','phpparser.py',162),
+  ('parameter -> ID','parameter',1,'p_parameter','phpparser.py',173),
+  ('block -> LBRACKET RBRACKET','block',2,'p_block','phpparser.py',181),
+  ('block -> LBRACKET statement-list RBRACKET','block',3,'p_block','phpparser.py',182),
+  ('statement-list -> statement','statement-list',1,'p_statement_list','phpparser.py',196),
+  ('statement-list -> statement statement-list','statement-list',2,'p_statement_list','phpparser.py',197),
+  ('statement -> declaration','statement',1,'p_statement','phpparser.py',207),
+  ('statement -> expression','statement',1,'p_statement','phpparser.py',208),
+  ('statement -> if-statement','statement',1,'p_statement','phpparser.py',209),
+  ('expression -> basic-expr','expression',1,'p_expression','phpparser.py',216),
+  ('expression -> assignment-expr SCOLO','expression',2,'p_expression','phpparser.py',217),
+  ('expression -> var-assign SCOLO','expression',2,'p_expression','phpparser.py',218),
+  ('expression -> comparison-expr','expression',1,'p_expression','phpparser.py',219),
+  ('string -> STRING','string',1,'p_string','phpparser.py',226),
+  ('basic-expr -> variable','basic-expr',1,'p_basic','phpparser.py',234),
+  ('basic-expr -> number','basic-expr',1,'p_basic','phpparser.py',235),
+  ('basic-expr -> string','basic-expr',1,'p_basic','phpparser.py',236),
+  ('identifier -> number','identifier',1,'p_id','phpparser.py',266),
+  ('number -> NUMBER','number',1,'p_number','phpparser.py',274),
+  ('variable -> ID','variable',1,'p_variable','phpparser.py',282),
+  ('var-assign -> variable EQ basic-expr','var-assign',3,'p_constant_assignment','phpparser.py',290),
+  ('var-assign -> variable EQ assignment-expr','var-assign',3,'p_variable_assignment','phpparser.py',308),
+  ('assignment-expr -> identifier math-operator identifier','assignment-expr',3,'p_assignment_expression','phpparser.py',326),
+  ('assignment-expr -> identifier math-operator assignment-expr','assignment-expr',3,'p_assignment_expression','phpparser.py',327),
+  ('comparison-expr -> basic-expr comp-operator basic-expr','comparison-expr',3,'p_comparison_expr','phpparser.py',342),
+  ('comparison-expr -> basic-expr comp-operator comparison-expr','comparison-expr',3,'p_comparison_expr','phpparser.py',343),
+  ('comp-operator -> GREATER','comp-operator',1,'p_comparison_operators','phpparser.py',350),
+  ('comp-operator -> LESS','comp-operator',1,'p_comparison_operators','phpparser.py',351),
+  ('comp-operator -> GREATER_OR_EQUAL','comp-operator',1,'p_comparison_operators','phpparser.py',352),
+  ('comp-operator -> SMALLER_OR_EQUAL','comp-operator',1,'p_comparison_operators','phpparser.py',353),
+  ('comp-operator -> COMP','comp-operator',1,'p_comparison_operators','phpparser.py',354),
+  ('comp-operator -> NOT','comp-operator',1,'p_comparison_operators','phpparser.py',355),
+  ('math-operator -> PLUS','math-operator',1,'p_binary_op','phpparser.py',363),
+  ('math-operator -> MINUS','math-operator',1,'p_binary_op','phpparser.py',364),
+  ('math-operator -> MUL','math-operator',1,'p_binary_op','phpparser.py',365),
+  ('math-operator -> DIV','math-operator',1,'p_binary_op','phpparser.py',366),
+  ('if-statement -> IF LPAREN expression RPAREN block','if-statement',5,'p_if_statement','phpparser.py',374),
+  ('if-statement -> IF LPAREN expression RPAREN block else-statement','if-statement',6,'p_if_statement','phpparser.py',375),
+  ('else-statement -> ELSE block','else-statement',2,'p_else_statement','phpparser.py',386),
 ]

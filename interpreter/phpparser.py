@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 import phplexer as lexer
 
+errors = []
 
 class Stack:
     def __init__(self, list):
@@ -104,11 +105,13 @@ def p_declaration(p):
     """
     p[0] = Node("declaration", None, None, [p[1]])
 
+
 def p_varDeclaration2(p):
     """
     varDeclaration : VAR ID EQ expression SCOLO
     """
     p[0] = Node('varDeclaration', [p[2], p[2]], None, None)
+
 
 def p_varDeclaration(p):
     """
@@ -238,11 +241,32 @@ def p_basic(p):
 
 def p_id(p):
     """
-    identifier : variable
-                | number
+    identifier :  ID
+    """
+    T = Node('identifier', p[1])
+
+    if stack.find(p[1]) == -1:
+        p[0] = Node('identifier', None, [T])
+    else:
+        temp = stack.find(p[1])
+        print temp.value
+        p[0] = Node('identifier', temp.value, [T])
+
+
+def p_id(p):
+    """
+    identifier :  string
     """
     T = Node('ID', p[1])
-    p[0] = Node('identifier', None, p[1].value , [T])
+    p[0] = Node('identifier', p[1].value , [T])
+
+
+def p_id(p):
+    """
+    identifier :  number
+    """
+    T = Node('ID', p[1])
+    p[0] = Node('identifier', p[1].value, [T])
 
 
 def p_number(p):
@@ -250,7 +274,7 @@ def p_number(p):
     number : NUMBER
     """
     T = Node('number', p[1])
-    p[0] = Node('number',p[1], 'Num')
+    p[0] = Node('number',p[1], [T])
 
 
 def p_variable(p):
@@ -283,21 +307,35 @@ def p_variable_assignment(p):
     """
     var-assign : variable EQ assignment-expr
     """
+    variable = Variable()
+    varname = ''
+    varname += p[1].value
 
     p[0] = Node('var-assign', None, None, [p[1], p[3]])
-
+    if stack.find(varname) == -1:
+        variable.variable = varname
+        variable.value = p[3].value
+        stack.push(variable)
+    else:
+        tmp = stack.find(varname)
+        tmp.value = p[3].value
 
 
 def p_assignment_expression(p):
     """
-    assignment-expr : identifier  math-operator basic-expr
+    assignment-expr : identifier  math-operator identifier
                      | identifier math-operator assignment-expr
     """
-    if len(p) == 4:
-        p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
-    else:
-        p[0] = Node('assignment-expr', None, None, [p[1], p[2]])
 
+    p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
+
+    if (isinstance(p[1], str) or isinstance(p[3], str)):
+        auxresult = ''
+        auxresult += p[1].value
+        auxresult += p[3].value
+        p[0].value = auxresult
+    else:
+        p[0].value = float(p[1].value) + float(p[3].value)
 
 def p_comparison_expr(p):
     """
@@ -317,7 +355,7 @@ def p_comparison_operators(p):
                     | NOT
     """
     T = Node(p[1], p[1])
-    p[0] = Node('comp-operator', None, None, [T])
+    p[0] = Node('comp-operator', p[1], [T])
 
 
 def p_binary_op(p):
@@ -328,7 +366,7 @@ def p_binary_op(p):
                 | DIV
     """
     T = Node(p[1], p[1])
-    p[0] = Node('bin_op', None, None, [T])
+    p[0] = Node('bin_op', p[1], [T])
 
 
 def p_if_statement(p):
