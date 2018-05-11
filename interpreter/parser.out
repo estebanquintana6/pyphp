@@ -42,31 +42,30 @@ Rule 23    expression -> assignment-expr SCOLO
 Rule 24    expression -> var-assign SCOLO
 Rule 25    expression -> comparison-expr
 Rule 26    string -> STRING
-Rule 27    basic-expr -> variable
+Rule 27    basic-expr -> ID
 Rule 28    basic-expr -> number
 Rule 29    basic-expr -> string
-Rule 30    identifier -> number
-Rule 31    number -> NUMBER
-Rule 32    variable -> ID
-Rule 33    var-assign -> variable EQ basic-expr
-Rule 34    var-assign -> variable EQ assignment-expr
-Rule 35    assignment-expr -> identifier math-operator identifier
-Rule 36    assignment-expr -> identifier math-operator assignment-expr
-Rule 37    comparison-expr -> basic-expr comp-operator basic-expr
-Rule 38    comparison-expr -> basic-expr comp-operator comparison-expr
-Rule 39    comp-operator -> GREATER
-Rule 40    comp-operator -> LESS
-Rule 41    comp-operator -> GREATER_OR_EQUAL
-Rule 42    comp-operator -> SMALLER_OR_EQUAL
-Rule 43    comp-operator -> COMP
-Rule 44    comp-operator -> NOT
-Rule 45    math-operator -> PLUS
-Rule 46    math-operator -> MINUS
-Rule 47    math-operator -> MUL
-Rule 48    math-operator -> DIV
-Rule 49    if-statement -> IF LPAREN expression RPAREN block
-Rule 50    if-statement -> IF LPAREN expression RPAREN block else-statement
-Rule 51    else-statement -> ELSE block
+Rule 30    number -> NUMBER
+Rule 31    variable -> ID
+Rule 32    var-assign -> variable EQ basic-expr
+Rule 33    var-assign -> variable EQ assignment-expr
+Rule 34    assignment-expr -> basic-expr math-operator basic-expr
+Rule 35    assignment-expr -> basic-expr math-operator assignment-expr
+Rule 36    comparison-expr -> basic-expr comp-operator basic-expr
+Rule 37    comparison-expr -> basic-expr comp-operator comparison-expr
+Rule 38    comp-operator -> GREATER
+Rule 39    comp-operator -> LESS
+Rule 40    comp-operator -> GREATER_OR_EQUAL
+Rule 41    comp-operator -> SMALLER_OR_EQUAL
+Rule 42    comp-operator -> COMP
+Rule 43    comp-operator -> NOT
+Rule 44    math-operator -> PLUS
+Rule 45    math-operator -> MINUS
+Rule 46    math-operator -> MUL
+Rule 47    math-operator -> DIV
+Rule 48    if-statement -> IF LPAREN expression RPAREN block
+Rule 49    if-statement -> IF LPAREN expression RPAREN block else-statement
+Rule 50    else-statement -> ELSE block
 
 Terminals, with rules where they appear
 
@@ -74,30 +73,30 @@ AND                  :
 BOOL                 : 
 COMMA                : 13
 COMMENT              : 
-COMP                 : 43
-DIV                  : 48
-ELSE                 : 51
+COMP                 : 42
+DIV                  : 47
+ELSE                 : 50
 END                  : 
-EQ                   : 6 33 34
+EQ                   : 6 32 33
 FOR                  : 
 FUNCTION             : 8
-GREATER              : 39
-GREATER_OR_EQUAL     : 41
-ID                   : 6 7 9 14 32
-IF                   : 49 50
+GREATER              : 38
+GREATER_OR_EQUAL     : 40
+ID                   : 6 7 9 14 27 31
+IF                   : 48 49
 LBRACKET             : 15 16
-LESS                 : 40
-LPAREN               : 10 11 49 50
-MINUS                : 46
-MUL                  : 47
-NOT                  : 44
-NUMBER               : 31
+LESS                 : 39
+LPAREN               : 10 11 48 49
+MINUS                : 45
+MUL                  : 46
+NOT                  : 43
+NUMBER               : 30
 OR                   : 
-PLUS                 : 45
+PLUS                 : 44
 RBRACKET             : 15 16
-RPAREN               : 10 11 49 50
+RPAREN               : 10 11 48 49
 SCOLO                : 6 7 23 24
-SMALLER_OR_EQUAL     : 42
+SMALLER_OR_EQUAL     : 41
 START                : 
 STARTCLOSE           : 
 STRING               : 26
@@ -108,21 +107,20 @@ error                :
 
 Nonterminals, with rules where they appear
 
-assignment-expr      : 23 34 36
-basic-expr           : 22 33 37 37 38
-block                : 9 49 50 51
-comp-operator        : 37 38
-comparison-expr      : 25 38
+assignment-expr      : 23 33 35
+basic-expr           : 22 32 34 34 35 36 36 37
+block                : 9 48 49 50
+comp-operator        : 36 37
+comparison-expr      : 25 37
 declaration          : 2 3 19
 declaration-list     : 1 3
-else-statement       : 50
-expression           : 6 20 49 50
+else-statement       : 49
+expression           : 6 20 48 49
 funDeclaration       : 4
 function             : 8
-identifier           : 35 35 36
 if-statement         : 21
-math-operator        : 35 36
-number               : 28 30
+math-operator        : 34 35
+number               : 28
 paramList            : 11 13
 parameter            : 12 13
 parameters           : 9
@@ -132,7 +130,7 @@ statement-list       : 16 18
 string               : 29
 var-assign           : 24
 varDeclaration       : 5
-variable             : 27 33 34
+variable             : 32 33
 
 Parsing method: LALR
 
@@ -240,14 +238,14 @@ state 8
 
     (8) funDeclaration -> FUNCTION function .
 
-    IF              reduce using rule 8 (funDeclaration -> FUNCTION function .)
     FUNCTION        reduce using rule 8 (funDeclaration -> FUNCTION function .)
     VAR             reduce using rule 8 (funDeclaration -> FUNCTION function .)
+    $end            reduce using rule 8 (funDeclaration -> FUNCTION function .)
+    IF              reduce using rule 8 (funDeclaration -> FUNCTION function .)
     ID              reduce using rule 8 (funDeclaration -> FUNCTION function .)
     NUMBER          reduce using rule 8 (funDeclaration -> FUNCTION function .)
     STRING          reduce using rule 8 (funDeclaration -> FUNCTION function .)
     RBRACKET        reduce using rule 8 (funDeclaration -> FUNCTION function .)
-    $end            reduce using rule 8 (funDeclaration -> FUNCTION function .)
 
 
 state 9
@@ -307,23 +305,22 @@ state 14
     (23) expression -> . assignment-expr SCOLO
     (24) expression -> . var-assign SCOLO
     (25) expression -> . comparison-expr
-    (27) basic-expr -> . variable
+    (27) basic-expr -> . ID
     (28) basic-expr -> . number
     (29) basic-expr -> . string
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (33) var-assign -> . variable EQ basic-expr
-    (34) var-assign -> . variable EQ assignment-expr
-    (37) comparison-expr -> . basic-expr comp-operator basic-expr
-    (38) comparison-expr -> . basic-expr comp-operator comparison-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (32) var-assign -> . variable EQ basic-expr
+    (33) var-assign -> . variable EQ assignment-expr
+    (36) comparison-expr -> . basic-expr comp-operator basic-expr
+    (37) comparison-expr -> . basic-expr comp-operator comparison-expr
+    (30) number -> . NUMBER
     (26) string -> . STRING
-    (30) identifier -> . number
+    (31) variable -> . ID
 
-    ID              shift and go to state 31
+    ID              shift and go to state 30
     NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    STRING          shift and go to state 32
 
     string                         shift and go to state 22
     basic-expr                     shift and go to state 24
@@ -331,9 +328,8 @@ state 14
     number                         shift and go to state 26
     assignment-expr                shift and go to state 28
     variable                       shift and go to state 27
-    identifier                     shift and go to state 29
-    expression                     shift and go to state 30
-    comparison-expr                shift and go to state 32
+    expression                     shift and go to state 29
+    comparison-expr                shift and go to state 31
 
 state 15
 
@@ -364,48 +360,46 @@ state 16
     (23) expression -> . assignment-expr SCOLO
     (24) expression -> . var-assign SCOLO
     (25) expression -> . comparison-expr
-    (49) if-statement -> . IF LPAREN expression RPAREN block
-    (50) if-statement -> . IF LPAREN expression RPAREN block else-statement
+    (48) if-statement -> . IF LPAREN expression RPAREN block
+    (49) if-statement -> . IF LPAREN expression RPAREN block else-statement
     (8) funDeclaration -> . FUNCTION function
     (6) varDeclaration -> . VAR ID EQ expression SCOLO
     (7) varDeclaration -> . VAR ID SCOLO
-    (27) basic-expr -> . variable
+    (27) basic-expr -> . ID
     (28) basic-expr -> . number
     (29) basic-expr -> . string
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (33) var-assign -> . variable EQ basic-expr
-    (34) var-assign -> . variable EQ assignment-expr
-    (37) comparison-expr -> . basic-expr comp-operator basic-expr
-    (38) comparison-expr -> . basic-expr comp-operator comparison-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (32) var-assign -> . variable EQ basic-expr
+    (33) var-assign -> . variable EQ assignment-expr
+    (36) comparison-expr -> . basic-expr comp-operator basic-expr
+    (37) comparison-expr -> . basic-expr comp-operator comparison-expr
+    (30) number -> . NUMBER
     (26) string -> . STRING
-    (30) identifier -> . number
+    (31) variable -> . ID
 
-    RBRACKET        shift and go to state 39
-    IF              shift and go to state 36
+    RBRACKET        shift and go to state 38
+    IF              shift and go to state 35
     FUNCTION        shift and go to state 1
     VAR             shift and go to state 7
-    ID              shift and go to state 31
+    ID              shift and go to state 30
     NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    STRING          shift and go to state 32
 
     funDeclaration                 shift and go to state 5
-    statement-list                 shift and go to state 38
+    statement-list                 shift and go to state 37
     string                         shift and go to state 22
     assignment-expr                shift and go to state 28
     basic-expr                     shift and go to state 24
     var-assign                     shift and go to state 25
     number                         shift and go to state 26
-    if-statement                   shift and go to state 37
+    if-statement                   shift and go to state 36
     varDeclaration                 shift and go to state 3
-    statement                      shift and go to state 34
-    declaration                    shift and go to state 35
+    statement                      shift and go to state 33
+    declaration                    shift and go to state 34
     variable                       shift and go to state 27
-    identifier                     shift and go to state 29
-    expression                     shift and go to state 40
-    comparison-expr                shift and go to state 32
+    expression                     shift and go to state 39
+    comparison-expr                shift and go to state 31
 
 state 17
 
@@ -432,7 +426,7 @@ state 19
 
     (11) parameters -> LPAREN paramList . RPAREN
 
-    RPAREN          shift and go to state 41
+    RPAREN          shift and go to state 40
 
 
 state 20
@@ -441,7 +435,7 @@ state 20
     (13) paramList -> parameter . COMMA paramList
 
     RPAREN          reduce using rule 12 (paramList -> parameter .)
-    COMMA           shift and go to state 42
+    COMMA           shift and go to state 41
 
 
 state 21
@@ -456,13 +450,16 @@ state 22
 
     (29) basic-expr -> string .
 
+    PLUS            reduce using rule 29 (basic-expr -> string .)
+    MINUS           reduce using rule 29 (basic-expr -> string .)
+    MUL             reduce using rule 29 (basic-expr -> string .)
+    DIV             reduce using rule 29 (basic-expr -> string .)
     GREATER         reduce using rule 29 (basic-expr -> string .)
     LESS            reduce using rule 29 (basic-expr -> string .)
     GREATER_OR_EQUAL reduce using rule 29 (basic-expr -> string .)
     SMALLER_OR_EQUAL reduce using rule 29 (basic-expr -> string .)
     COMP            reduce using rule 29 (basic-expr -> string .)
     NOT             reduce using rule 29 (basic-expr -> string .)
-    SCOLO           reduce using rule 29 (basic-expr -> string .)
     IF              reduce using rule 29 (basic-expr -> string .)
     FUNCTION        reduce using rule 29 (basic-expr -> string .)
     VAR             reduce using rule 29 (basic-expr -> string .)
@@ -470,47 +467,53 @@ state 22
     NUMBER          reduce using rule 29 (basic-expr -> string .)
     STRING          reduce using rule 29 (basic-expr -> string .)
     RBRACKET        reduce using rule 29 (basic-expr -> string .)
+    SCOLO           reduce using rule 29 (basic-expr -> string .)
     RPAREN          reduce using rule 29 (basic-expr -> string .)
 
 
 state 23
 
-    (31) number -> NUMBER .
+    (30) number -> NUMBER .
 
-    GREATER         reduce using rule 31 (number -> NUMBER .)
-    LESS            reduce using rule 31 (number -> NUMBER .)
-    GREATER_OR_EQUAL reduce using rule 31 (number -> NUMBER .)
-    SMALLER_OR_EQUAL reduce using rule 31 (number -> NUMBER .)
-    COMP            reduce using rule 31 (number -> NUMBER .)
-    NOT             reduce using rule 31 (number -> NUMBER .)
-    SCOLO           reduce using rule 31 (number -> NUMBER .)
-    PLUS            reduce using rule 31 (number -> NUMBER .)
-    MINUS           reduce using rule 31 (number -> NUMBER .)
-    MUL             reduce using rule 31 (number -> NUMBER .)
-    DIV             reduce using rule 31 (number -> NUMBER .)
-    IF              reduce using rule 31 (number -> NUMBER .)
-    FUNCTION        reduce using rule 31 (number -> NUMBER .)
-    VAR             reduce using rule 31 (number -> NUMBER .)
-    ID              reduce using rule 31 (number -> NUMBER .)
-    NUMBER          reduce using rule 31 (number -> NUMBER .)
-    STRING          reduce using rule 31 (number -> NUMBER .)
-    RBRACKET        reduce using rule 31 (number -> NUMBER .)
-    RPAREN          reduce using rule 31 (number -> NUMBER .)
+    PLUS            reduce using rule 30 (number -> NUMBER .)
+    MINUS           reduce using rule 30 (number -> NUMBER .)
+    MUL             reduce using rule 30 (number -> NUMBER .)
+    DIV             reduce using rule 30 (number -> NUMBER .)
+    SCOLO           reduce using rule 30 (number -> NUMBER .)
+    GREATER         reduce using rule 30 (number -> NUMBER .)
+    LESS            reduce using rule 30 (number -> NUMBER .)
+    GREATER_OR_EQUAL reduce using rule 30 (number -> NUMBER .)
+    SMALLER_OR_EQUAL reduce using rule 30 (number -> NUMBER .)
+    COMP            reduce using rule 30 (number -> NUMBER .)
+    NOT             reduce using rule 30 (number -> NUMBER .)
+    IF              reduce using rule 30 (number -> NUMBER .)
+    FUNCTION        reduce using rule 30 (number -> NUMBER .)
+    VAR             reduce using rule 30 (number -> NUMBER .)
+    ID              reduce using rule 30 (number -> NUMBER .)
+    NUMBER          reduce using rule 30 (number -> NUMBER .)
+    STRING          reduce using rule 30 (number -> NUMBER .)
+    RBRACKET        reduce using rule 30 (number -> NUMBER .)
+    RPAREN          reduce using rule 30 (number -> NUMBER .)
 
 
 state 24
 
     (22) expression -> basic-expr .
-    (37) comparison-expr -> basic-expr . comp-operator basic-expr
-    (38) comparison-expr -> basic-expr . comp-operator comparison-expr
-    (39) comp-operator -> . GREATER
-    (40) comp-operator -> . LESS
-    (41) comp-operator -> . GREATER_OR_EQUAL
-    (42) comp-operator -> . SMALLER_OR_EQUAL
-    (43) comp-operator -> . COMP
-    (44) comp-operator -> . NOT
+    (34) assignment-expr -> basic-expr . math-operator basic-expr
+    (35) assignment-expr -> basic-expr . math-operator assignment-expr
+    (36) comparison-expr -> basic-expr . comp-operator basic-expr
+    (37) comparison-expr -> basic-expr . comp-operator comparison-expr
+    (44) math-operator -> . PLUS
+    (45) math-operator -> . MINUS
+    (46) math-operator -> . MUL
+    (47) math-operator -> . DIV
+    (38) comp-operator -> . GREATER
+    (39) comp-operator -> . LESS
+    (40) comp-operator -> . GREATER_OR_EQUAL
+    (41) comp-operator -> . SMALLER_OR_EQUAL
+    (42) comp-operator -> . COMP
+    (43) comp-operator -> . NOT
 
-    RPAREN          reduce using rule 22 (expression -> basic-expr .)
     IF              reduce using rule 22 (expression -> basic-expr .)
     FUNCTION        reduce using rule 22 (expression -> basic-expr .)
     VAR             reduce using rule 22 (expression -> basic-expr .)
@@ -518,28 +521,37 @@ state 24
     NUMBER          reduce using rule 22 (expression -> basic-expr .)
     STRING          reduce using rule 22 (expression -> basic-expr .)
     RBRACKET        reduce using rule 22 (expression -> basic-expr .)
+    RPAREN          reduce using rule 22 (expression -> basic-expr .)
     SCOLO           reduce using rule 22 (expression -> basic-expr .)
-    GREATER         shift and go to state 43
-    LESS            shift and go to state 46
-    GREATER_OR_EQUAL shift and go to state 44
-    SMALLER_OR_EQUAL shift and go to state 49
-    COMP            shift and go to state 45
-    NOT             shift and go to state 48
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 52
+    MUL             shift and go to state 50
+    DIV             shift and go to state 51
+    GREATER         shift and go to state 53
+    LESS            shift and go to state 43
+    GREATER_OR_EQUAL shift and go to state 45
+    SMALLER_OR_EQUAL shift and go to state 46
+    COMP            shift and go to state 44
+    NOT             shift and go to state 49
 
-    comp-operator                  shift and go to state 47
+    math-operator                  shift and go to state 42
+    comp-operator                  shift and go to state 48
 
 state 25
 
     (24) expression -> var-assign . SCOLO
 
-    SCOLO           shift and go to state 50
+    SCOLO           shift and go to state 54
 
 
 state 26
 
     (28) basic-expr -> number .
-    (30) identifier -> number .
 
+    PLUS            reduce using rule 28 (basic-expr -> number .)
+    MINUS           reduce using rule 28 (basic-expr -> number .)
+    MUL             reduce using rule 28 (basic-expr -> number .)
+    DIV             reduce using rule 28 (basic-expr -> number .)
     GREATER         reduce using rule 28 (basic-expr -> number .)
     LESS            reduce using rule 28 (basic-expr -> number .)
     GREATER_OR_EQUAL reduce using rule 28 (basic-expr -> number .)
@@ -555,93 +567,61 @@ state 26
     RBRACKET        reduce using rule 28 (basic-expr -> number .)
     SCOLO           reduce using rule 28 (basic-expr -> number .)
     RPAREN          reduce using rule 28 (basic-expr -> number .)
-    PLUS            reduce using rule 30 (identifier -> number .)
-    MINUS           reduce using rule 30 (identifier -> number .)
-    MUL             reduce using rule 30 (identifier -> number .)
-    DIV             reduce using rule 30 (identifier -> number .)
 
 
 state 27
 
-    (27) basic-expr -> variable .
-    (33) var-assign -> variable . EQ basic-expr
-    (34) var-assign -> variable . EQ assignment-expr
+    (32) var-assign -> variable . EQ basic-expr
+    (33) var-assign -> variable . EQ assignment-expr
 
-    GREATER         reduce using rule 27 (basic-expr -> variable .)
-    LESS            reduce using rule 27 (basic-expr -> variable .)
-    GREATER_OR_EQUAL reduce using rule 27 (basic-expr -> variable .)
-    SMALLER_OR_EQUAL reduce using rule 27 (basic-expr -> variable .)
-    COMP            reduce using rule 27 (basic-expr -> variable .)
-    NOT             reduce using rule 27 (basic-expr -> variable .)
-    IF              reduce using rule 27 (basic-expr -> variable .)
-    FUNCTION        reduce using rule 27 (basic-expr -> variable .)
-    VAR             reduce using rule 27 (basic-expr -> variable .)
-    ID              reduce using rule 27 (basic-expr -> variable .)
-    NUMBER          reduce using rule 27 (basic-expr -> variable .)
-    STRING          reduce using rule 27 (basic-expr -> variable .)
-    RBRACKET        reduce using rule 27 (basic-expr -> variable .)
-    SCOLO           reduce using rule 27 (basic-expr -> variable .)
-    RPAREN          reduce using rule 27 (basic-expr -> variable .)
-    EQ              shift and go to state 51
+    EQ              shift and go to state 55
 
 
 state 28
 
     (23) expression -> assignment-expr . SCOLO
 
-    SCOLO           shift and go to state 52
+    SCOLO           shift and go to state 56
 
 
 state 29
 
-    (35) assignment-expr -> identifier . math-operator identifier
-    (36) assignment-expr -> identifier . math-operator assignment-expr
-    (45) math-operator -> . PLUS
-    (46) math-operator -> . MINUS
-    (47) math-operator -> . MUL
-    (48) math-operator -> . DIV
+    (6) varDeclaration -> VAR ID EQ expression . SCOLO
 
-    PLUS            shift and go to state 54
-    MINUS           shift and go to state 57
-    MUL             shift and go to state 55
-    DIV             shift and go to state 56
+    SCOLO           shift and go to state 57
 
-    math-operator                  shift and go to state 53
 
 state 30
 
-    (6) varDeclaration -> VAR ID EQ expression . SCOLO
+    (27) basic-expr -> ID .
+    (31) variable -> ID .
 
-    SCOLO           shift and go to state 58
+    PLUS            reduce using rule 27 (basic-expr -> ID .)
+    MINUS           reduce using rule 27 (basic-expr -> ID .)
+    MUL             reduce using rule 27 (basic-expr -> ID .)
+    DIV             reduce using rule 27 (basic-expr -> ID .)
+    GREATER         reduce using rule 27 (basic-expr -> ID .)
+    LESS            reduce using rule 27 (basic-expr -> ID .)
+    GREATER_OR_EQUAL reduce using rule 27 (basic-expr -> ID .)
+    SMALLER_OR_EQUAL reduce using rule 27 (basic-expr -> ID .)
+    COMP            reduce using rule 27 (basic-expr -> ID .)
+    NOT             reduce using rule 27 (basic-expr -> ID .)
+    IF              reduce using rule 27 (basic-expr -> ID .)
+    FUNCTION        reduce using rule 27 (basic-expr -> ID .)
+    VAR             reduce using rule 27 (basic-expr -> ID .)
+    ID              reduce using rule 27 (basic-expr -> ID .)
+    NUMBER          reduce using rule 27 (basic-expr -> ID .)
+    STRING          reduce using rule 27 (basic-expr -> ID .)
+    RBRACKET        reduce using rule 27 (basic-expr -> ID .)
+    SCOLO           reduce using rule 27 (basic-expr -> ID .)
+    RPAREN          reduce using rule 27 (basic-expr -> ID .)
+    EQ              reduce using rule 31 (variable -> ID .)
 
 
 state 31
 
-    (32) variable -> ID .
-
-    EQ              reduce using rule 32 (variable -> ID .)
-    GREATER         reduce using rule 32 (variable -> ID .)
-    LESS            reduce using rule 32 (variable -> ID .)
-    GREATER_OR_EQUAL reduce using rule 32 (variable -> ID .)
-    SMALLER_OR_EQUAL reduce using rule 32 (variable -> ID .)
-    COMP            reduce using rule 32 (variable -> ID .)
-    NOT             reduce using rule 32 (variable -> ID .)
-    SCOLO           reduce using rule 32 (variable -> ID .)
-    IF              reduce using rule 32 (variable -> ID .)
-    FUNCTION        reduce using rule 32 (variable -> ID .)
-    VAR             reduce using rule 32 (variable -> ID .)
-    ID              reduce using rule 32 (variable -> ID .)
-    NUMBER          reduce using rule 32 (variable -> ID .)
-    STRING          reduce using rule 32 (variable -> ID .)
-    RBRACKET        reduce using rule 32 (variable -> ID .)
-    RPAREN          reduce using rule 32 (variable -> ID .)
-
-
-state 32
-
     (25) expression -> comparison-expr .
 
-    RPAREN          reduce using rule 25 (expression -> comparison-expr .)
     IF              reduce using rule 25 (expression -> comparison-expr .)
     FUNCTION        reduce using rule 25 (expression -> comparison-expr .)
     VAR             reduce using rule 25 (expression -> comparison-expr .)
@@ -649,13 +629,18 @@ state 32
     NUMBER          reduce using rule 25 (expression -> comparison-expr .)
     STRING          reduce using rule 25 (expression -> comparison-expr .)
     RBRACKET        reduce using rule 25 (expression -> comparison-expr .)
+    RPAREN          reduce using rule 25 (expression -> comparison-expr .)
     SCOLO           reduce using rule 25 (expression -> comparison-expr .)
 
 
-state 33
+state 32
 
     (26) string -> STRING .
 
+    PLUS            reduce using rule 26 (string -> STRING .)
+    MINUS           reduce using rule 26 (string -> STRING .)
+    MUL             reduce using rule 26 (string -> STRING .)
+    DIV             reduce using rule 26 (string -> STRING .)
     GREATER         reduce using rule 26 (string -> STRING .)
     LESS            reduce using rule 26 (string -> STRING .)
     GREATER_OR_EQUAL reduce using rule 26 (string -> STRING .)
@@ -673,7 +658,7 @@ state 33
     SCOLO           reduce using rule 26 (string -> STRING .)
 
 
-state 34
+state 33
 
     (17) statement-list -> statement .
     (18) statement-list -> statement . statement-list
@@ -688,50 +673,48 @@ state 34
     (23) expression -> . assignment-expr SCOLO
     (24) expression -> . var-assign SCOLO
     (25) expression -> . comparison-expr
-    (49) if-statement -> . IF LPAREN expression RPAREN block
-    (50) if-statement -> . IF LPAREN expression RPAREN block else-statement
+    (48) if-statement -> . IF LPAREN expression RPAREN block
+    (49) if-statement -> . IF LPAREN expression RPAREN block else-statement
     (8) funDeclaration -> . FUNCTION function
     (6) varDeclaration -> . VAR ID EQ expression SCOLO
     (7) varDeclaration -> . VAR ID SCOLO
-    (27) basic-expr -> . variable
+    (27) basic-expr -> . ID
     (28) basic-expr -> . number
     (29) basic-expr -> . string
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (33) var-assign -> . variable EQ basic-expr
-    (34) var-assign -> . variable EQ assignment-expr
-    (37) comparison-expr -> . basic-expr comp-operator basic-expr
-    (38) comparison-expr -> . basic-expr comp-operator comparison-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (32) var-assign -> . variable EQ basic-expr
+    (33) var-assign -> . variable EQ assignment-expr
+    (36) comparison-expr -> . basic-expr comp-operator basic-expr
+    (37) comparison-expr -> . basic-expr comp-operator comparison-expr
+    (30) number -> . NUMBER
     (26) string -> . STRING
-    (30) identifier -> . number
+    (31) variable -> . ID
 
     RBRACKET        reduce using rule 17 (statement-list -> statement .)
-    IF              shift and go to state 36
+    IF              shift and go to state 35
     FUNCTION        shift and go to state 1
     VAR             shift and go to state 7
-    ID              shift and go to state 31
+    ID              shift and go to state 30
     NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    STRING          shift and go to state 32
 
     funDeclaration                 shift and go to state 5
-    statement                      shift and go to state 34
+    statement                      shift and go to state 33
     string                         shift and go to state 22
     assignment-expr                shift and go to state 28
     basic-expr                     shift and go to state 24
     var-assign                     shift and go to state 25
     number                         shift and go to state 26
-    if-statement                   shift and go to state 37
+    if-statement                   shift and go to state 36
     varDeclaration                 shift and go to state 3
-    statement-list                 shift and go to state 59
-    declaration                    shift and go to state 35
+    statement-list                 shift and go to state 58
+    declaration                    shift and go to state 34
     variable                       shift and go to state 27
-    identifier                     shift and go to state 29
-    expression                     shift and go to state 40
-    comparison-expr                shift and go to state 32
+    expression                     shift and go to state 39
+    comparison-expr                shift and go to state 31
 
-state 35
+state 34
 
     (19) statement -> declaration .
 
@@ -744,15 +727,15 @@ state 35
     RBRACKET        reduce using rule 19 (statement -> declaration .)
 
 
+state 35
+
+    (48) if-statement -> IF . LPAREN expression RPAREN block
+    (49) if-statement -> IF . LPAREN expression RPAREN block else-statement
+
+    LPAREN          shift and go to state 59
+
+
 state 36
-
-    (49) if-statement -> IF . LPAREN expression RPAREN block
-    (50) if-statement -> IF . LPAREN expression RPAREN block else-statement
-
-    LPAREN          shift and go to state 60
-
-
-state 37
 
     (21) statement -> if-statement .
 
@@ -765,14 +748,14 @@ state 37
     RBRACKET        reduce using rule 21 (statement -> if-statement .)
 
 
-state 38
+state 37
 
     (16) block -> LBRACKET statement-list . RBRACKET
 
-    RBRACKET        shift and go to state 61
+    RBRACKET        shift and go to state 60
 
 
-state 39
+state 38
 
     (15) block -> LBRACKET RBRACKET .
 
@@ -783,11 +766,11 @@ state 39
     NUMBER          reduce using rule 15 (block -> LBRACKET RBRACKET .)
     STRING          reduce using rule 15 (block -> LBRACKET RBRACKET .)
     RBRACKET        reduce using rule 15 (block -> LBRACKET RBRACKET .)
-    $end            reduce using rule 15 (block -> LBRACKET RBRACKET .)
     ELSE            reduce using rule 15 (block -> LBRACKET RBRACKET .)
+    $end            reduce using rule 15 (block -> LBRACKET RBRACKET .)
 
 
-state 40
+state 39
 
     (20) statement -> expression .
 
@@ -800,14 +783,14 @@ state 40
     RBRACKET        reduce using rule 20 (statement -> expression .)
 
 
-state 41
+state 40
 
     (11) parameters -> LPAREN paramList RPAREN .
 
     LBRACKET        reduce using rule 11 (parameters -> LPAREN paramList RPAREN .)
 
 
-state 42
+state 41
 
     (13) paramList -> parameter COMMA . paramList
     (12) paramList -> . parameter
@@ -817,90 +800,144 @@ state 42
     ID              shift and go to state 21
 
     parameter                      shift and go to state 20
-    paramList                      shift and go to state 62
+    paramList                      shift and go to state 61
+
+state 42
+
+    (34) assignment-expr -> basic-expr math-operator . basic-expr
+    (35) assignment-expr -> basic-expr math-operator . assignment-expr
+    (27) basic-expr -> . ID
+    (28) basic-expr -> . number
+    (29) basic-expr -> . string
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (30) number -> . NUMBER
+    (26) string -> . STRING
+
+    ID              shift and go to state 64
+    NUMBER          shift and go to state 23
+    STRING          shift and go to state 32
+
+    string                         shift and go to state 22
+    basic-expr                     shift and go to state 62
+    assignment-expr                shift and go to state 63
+    number                         shift and go to state 26
 
 state 43
 
-    (39) comp-operator -> GREATER .
+    (39) comp-operator -> LESS .
 
-    ID              reduce using rule 39 (comp-operator -> GREATER .)
-    NUMBER          reduce using rule 39 (comp-operator -> GREATER .)
-    STRING          reduce using rule 39 (comp-operator -> GREATER .)
+    ID              reduce using rule 39 (comp-operator -> LESS .)
+    NUMBER          reduce using rule 39 (comp-operator -> LESS .)
+    STRING          reduce using rule 39 (comp-operator -> LESS .)
 
 
 state 44
 
-    (41) comp-operator -> GREATER_OR_EQUAL .
+    (42) comp-operator -> COMP .
 
-    ID              reduce using rule 41 (comp-operator -> GREATER_OR_EQUAL .)
-    NUMBER          reduce using rule 41 (comp-operator -> GREATER_OR_EQUAL .)
-    STRING          reduce using rule 41 (comp-operator -> GREATER_OR_EQUAL .)
+    ID              reduce using rule 42 (comp-operator -> COMP .)
+    NUMBER          reduce using rule 42 (comp-operator -> COMP .)
+    STRING          reduce using rule 42 (comp-operator -> COMP .)
 
 
 state 45
 
-    (43) comp-operator -> COMP .
+    (40) comp-operator -> GREATER_OR_EQUAL .
 
-    ID              reduce using rule 43 (comp-operator -> COMP .)
-    NUMBER          reduce using rule 43 (comp-operator -> COMP .)
-    STRING          reduce using rule 43 (comp-operator -> COMP .)
+    ID              reduce using rule 40 (comp-operator -> GREATER_OR_EQUAL .)
+    NUMBER          reduce using rule 40 (comp-operator -> GREATER_OR_EQUAL .)
+    STRING          reduce using rule 40 (comp-operator -> GREATER_OR_EQUAL .)
 
 
 state 46
 
-    (40) comp-operator -> LESS .
+    (41) comp-operator -> SMALLER_OR_EQUAL .
 
-    ID              reduce using rule 40 (comp-operator -> LESS .)
-    NUMBER          reduce using rule 40 (comp-operator -> LESS .)
-    STRING          reduce using rule 40 (comp-operator -> LESS .)
+    ID              reduce using rule 41 (comp-operator -> SMALLER_OR_EQUAL .)
+    NUMBER          reduce using rule 41 (comp-operator -> SMALLER_OR_EQUAL .)
+    STRING          reduce using rule 41 (comp-operator -> SMALLER_OR_EQUAL .)
 
 
 state 47
 
-    (37) comparison-expr -> basic-expr comp-operator . basic-expr
-    (38) comparison-expr -> basic-expr comp-operator . comparison-expr
-    (27) basic-expr -> . variable
-    (28) basic-expr -> . number
-    (29) basic-expr -> . string
-    (37) comparison-expr -> . basic-expr comp-operator basic-expr
-    (38) comparison-expr -> . basic-expr comp-operator comparison-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
-    (26) string -> . STRING
+    (44) math-operator -> PLUS .
 
-    ID              shift and go to state 31
-    NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    ID              reduce using rule 44 (math-operator -> PLUS .)
+    NUMBER          reduce using rule 44 (math-operator -> PLUS .)
+    STRING          reduce using rule 44 (math-operator -> PLUS .)
 
-    string                         shift and go to state 22
-    basic-expr                     shift and go to state 63
-    number                         shift and go to state 64
-    variable                       shift and go to state 65
-    comparison-expr                shift and go to state 66
 
 state 48
 
-    (44) comp-operator -> NOT .
+    (36) comparison-expr -> basic-expr comp-operator . basic-expr
+    (37) comparison-expr -> basic-expr comp-operator . comparison-expr
+    (27) basic-expr -> . ID
+    (28) basic-expr -> . number
+    (29) basic-expr -> . string
+    (36) comparison-expr -> . basic-expr comp-operator basic-expr
+    (37) comparison-expr -> . basic-expr comp-operator comparison-expr
+    (30) number -> . NUMBER
+    (26) string -> . STRING
 
-    ID              reduce using rule 44 (comp-operator -> NOT .)
-    NUMBER          reduce using rule 44 (comp-operator -> NOT .)
-    STRING          reduce using rule 44 (comp-operator -> NOT .)
+    ID              shift and go to state 64
+    NUMBER          shift and go to state 23
+    STRING          shift and go to state 32
 
+    string                         shift and go to state 22
+    basic-expr                     shift and go to state 65
+    number                         shift and go to state 26
+    comparison-expr                shift and go to state 66
 
 state 49
 
-    (42) comp-operator -> SMALLER_OR_EQUAL .
+    (43) comp-operator -> NOT .
 
-    ID              reduce using rule 42 (comp-operator -> SMALLER_OR_EQUAL .)
-    NUMBER          reduce using rule 42 (comp-operator -> SMALLER_OR_EQUAL .)
-    STRING          reduce using rule 42 (comp-operator -> SMALLER_OR_EQUAL .)
+    ID              reduce using rule 43 (comp-operator -> NOT .)
+    NUMBER          reduce using rule 43 (comp-operator -> NOT .)
+    STRING          reduce using rule 43 (comp-operator -> NOT .)
 
 
 state 50
 
+    (46) math-operator -> MUL .
+
+    ID              reduce using rule 46 (math-operator -> MUL .)
+    NUMBER          reduce using rule 46 (math-operator -> MUL .)
+    STRING          reduce using rule 46 (math-operator -> MUL .)
+
+
+state 51
+
+    (47) math-operator -> DIV .
+
+    ID              reduce using rule 47 (math-operator -> DIV .)
+    NUMBER          reduce using rule 47 (math-operator -> DIV .)
+    STRING          reduce using rule 47 (math-operator -> DIV .)
+
+
+state 52
+
+    (45) math-operator -> MINUS .
+
+    ID              reduce using rule 45 (math-operator -> MINUS .)
+    NUMBER          reduce using rule 45 (math-operator -> MINUS .)
+    STRING          reduce using rule 45 (math-operator -> MINUS .)
+
+
+state 53
+
+    (38) comp-operator -> GREATER .
+
+    ID              reduce using rule 38 (comp-operator -> GREATER .)
+    NUMBER          reduce using rule 38 (comp-operator -> GREATER .)
+    STRING          reduce using rule 38 (comp-operator -> GREATER .)
+
+
+state 54
+
     (24) expression -> var-assign SCOLO .
 
-    RPAREN          reduce using rule 24 (expression -> var-assign SCOLO .)
     IF              reduce using rule 24 (expression -> var-assign SCOLO .)
     FUNCTION        reduce using rule 24 (expression -> var-assign SCOLO .)
     VAR             reduce using rule 24 (expression -> var-assign SCOLO .)
@@ -908,39 +945,35 @@ state 50
     NUMBER          reduce using rule 24 (expression -> var-assign SCOLO .)
     STRING          reduce using rule 24 (expression -> var-assign SCOLO .)
     RBRACKET        reduce using rule 24 (expression -> var-assign SCOLO .)
+    RPAREN          reduce using rule 24 (expression -> var-assign SCOLO .)
     SCOLO           reduce using rule 24 (expression -> var-assign SCOLO .)
 
 
-state 51
+state 55
 
-    (33) var-assign -> variable EQ . basic-expr
-    (34) var-assign -> variable EQ . assignment-expr
-    (27) basic-expr -> . variable
+    (32) var-assign -> variable EQ . basic-expr
+    (33) var-assign -> variable EQ . assignment-expr
+    (27) basic-expr -> . ID
     (28) basic-expr -> . number
     (29) basic-expr -> . string
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (30) number -> . NUMBER
     (26) string -> . STRING
-    (30) identifier -> . number
 
-    ID              shift and go to state 31
+    ID              shift and go to state 64
     NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    STRING          shift and go to state 32
 
-    string                         shift and go to state 22
+    assignment-expr                shift and go to state 68
     basic-expr                     shift and go to state 67
     number                         shift and go to state 26
-    assignment-expr                shift and go to state 68
-    variable                       shift and go to state 65
-    identifier                     shift and go to state 29
+    string                         shift and go to state 22
 
-state 52
+state 56
 
     (23) expression -> assignment-expr SCOLO .
 
-    RPAREN          reduce using rule 23 (expression -> assignment-expr SCOLO .)
     IF              reduce using rule 23 (expression -> assignment-expr SCOLO .)
     FUNCTION        reduce using rule 23 (expression -> assignment-expr SCOLO .)
     VAR             reduce using rule 23 (expression -> assignment-expr SCOLO .)
@@ -948,53 +981,11 @@ state 52
     NUMBER          reduce using rule 23 (expression -> assignment-expr SCOLO .)
     STRING          reduce using rule 23 (expression -> assignment-expr SCOLO .)
     RBRACKET        reduce using rule 23 (expression -> assignment-expr SCOLO .)
+    RPAREN          reduce using rule 23 (expression -> assignment-expr SCOLO .)
     SCOLO           reduce using rule 23 (expression -> assignment-expr SCOLO .)
 
 
-state 53
-
-    (35) assignment-expr -> identifier math-operator . identifier
-    (36) assignment-expr -> identifier math-operator . assignment-expr
-    (30) identifier -> . number
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (31) number -> . NUMBER
-
-    NUMBER          shift and go to state 23
-
-    identifier                     shift and go to state 69
-    assignment-expr                shift and go to state 70
-    number                         shift and go to state 71
-
-state 54
-
-    (45) math-operator -> PLUS .
-
-    NUMBER          reduce using rule 45 (math-operator -> PLUS .)
-
-
-state 55
-
-    (47) math-operator -> MUL .
-
-    NUMBER          reduce using rule 47 (math-operator -> MUL .)
-
-
-state 56
-
-    (48) math-operator -> DIV .
-
-    NUMBER          reduce using rule 48 (math-operator -> DIV .)
-
-
 state 57
-
-    (46) math-operator -> MINUS .
-
-    NUMBER          reduce using rule 46 (math-operator -> MINUS .)
-
-
-state 58
 
     (6) varDeclaration -> VAR ID EQ expression SCOLO .
 
@@ -1008,50 +999,48 @@ state 58
     RBRACKET        reduce using rule 6 (varDeclaration -> VAR ID EQ expression SCOLO .)
 
 
-state 59
+state 58
 
     (18) statement-list -> statement statement-list .
 
     RBRACKET        reduce using rule 18 (statement-list -> statement statement-list .)
 
 
-state 60
+state 59
 
-    (49) if-statement -> IF LPAREN . expression RPAREN block
-    (50) if-statement -> IF LPAREN . expression RPAREN block else-statement
+    (48) if-statement -> IF LPAREN . expression RPAREN block
+    (49) if-statement -> IF LPAREN . expression RPAREN block else-statement
     (22) expression -> . basic-expr
     (23) expression -> . assignment-expr SCOLO
     (24) expression -> . var-assign SCOLO
     (25) expression -> . comparison-expr
-    (27) basic-expr -> . variable
+    (27) basic-expr -> . ID
     (28) basic-expr -> . number
     (29) basic-expr -> . string
-    (35) assignment-expr -> . identifier math-operator identifier
-    (36) assignment-expr -> . identifier math-operator assignment-expr
-    (33) var-assign -> . variable EQ basic-expr
-    (34) var-assign -> . variable EQ assignment-expr
-    (37) comparison-expr -> . basic-expr comp-operator basic-expr
-    (38) comparison-expr -> . basic-expr comp-operator comparison-expr
-    (32) variable -> . ID
-    (31) number -> . NUMBER
+    (34) assignment-expr -> . basic-expr math-operator basic-expr
+    (35) assignment-expr -> . basic-expr math-operator assignment-expr
+    (32) var-assign -> . variable EQ basic-expr
+    (33) var-assign -> . variable EQ assignment-expr
+    (36) comparison-expr -> . basic-expr comp-operator basic-expr
+    (37) comparison-expr -> . basic-expr comp-operator comparison-expr
+    (30) number -> . NUMBER
     (26) string -> . STRING
-    (30) identifier -> . number
+    (31) variable -> . ID
 
-    ID              shift and go to state 31
+    ID              shift and go to state 30
     NUMBER          shift and go to state 23
-    STRING          shift and go to state 33
+    STRING          shift and go to state 32
 
     basic-expr                     shift and go to state 24
     var-assign                     shift and go to state 25
     number                         shift and go to state 26
-    comparison-expr                shift and go to state 32
+    comparison-expr                shift and go to state 31
     assignment-expr                shift and go to state 28
     variable                       shift and go to state 27
-    identifier                     shift and go to state 29
-    expression                     shift and go to state 72
+    expression                     shift and go to state 69
     string                         shift and go to state 22
 
-state 61
+state 60
 
     (16) block -> LBRACKET statement-list RBRACKET .
 
@@ -1062,166 +1051,189 @@ state 61
     NUMBER          reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
     STRING          reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
     RBRACKET        reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
-    $end            reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
     ELSE            reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
+    $end            reduce using rule 16 (block -> LBRACKET statement-list RBRACKET .)
 
 
-state 62
+state 61
 
     (13) paramList -> parameter COMMA paramList .
 
     RPAREN          reduce using rule 13 (paramList -> parameter COMMA paramList .)
 
 
+state 62
+
+    (34) assignment-expr -> basic-expr math-operator basic-expr .
+    (34) assignment-expr -> basic-expr . math-operator basic-expr
+    (35) assignment-expr -> basic-expr . math-operator assignment-expr
+    (44) math-operator -> . PLUS
+    (45) math-operator -> . MINUS
+    (46) math-operator -> . MUL
+    (47) math-operator -> . DIV
+
+    SCOLO           reduce using rule 34 (assignment-expr -> basic-expr math-operator basic-expr .)
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 52
+    MUL             shift and go to state 50
+    DIV             shift and go to state 51
+
+    math-operator                  shift and go to state 42
+
 state 63
 
-    (37) comparison-expr -> basic-expr comp-operator basic-expr .
-    (37) comparison-expr -> basic-expr . comp-operator basic-expr
-    (38) comparison-expr -> basic-expr . comp-operator comparison-expr
-    (39) comp-operator -> . GREATER
-    (40) comp-operator -> . LESS
-    (41) comp-operator -> . GREATER_OR_EQUAL
-    (42) comp-operator -> . SMALLER_OR_EQUAL
-    (43) comp-operator -> . COMP
-    (44) comp-operator -> . NOT
+    (35) assignment-expr -> basic-expr math-operator assignment-expr .
 
-    SCOLO           reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    IF              reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    FUNCTION        reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    VAR             reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    ID              reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    NUMBER          reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    STRING          reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    RBRACKET        reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    RPAREN          reduce using rule 37 (comparison-expr -> basic-expr comp-operator basic-expr .)
-    GREATER         shift and go to state 43
-    LESS            shift and go to state 46
-    GREATER_OR_EQUAL shift and go to state 44
-    SMALLER_OR_EQUAL shift and go to state 49
-    COMP            shift and go to state 45
-    NOT             shift and go to state 48
+    SCOLO           reduce using rule 35 (assignment-expr -> basic-expr math-operator assignment-expr .)
 
-    comp-operator                  shift and go to state 47
 
 state 64
 
-    (28) basic-expr -> number .
+    (27) basic-expr -> ID .
 
-    GREATER         reduce using rule 28 (basic-expr -> number .)
-    LESS            reduce using rule 28 (basic-expr -> number .)
-    GREATER_OR_EQUAL reduce using rule 28 (basic-expr -> number .)
-    SMALLER_OR_EQUAL reduce using rule 28 (basic-expr -> number .)
-    COMP            reduce using rule 28 (basic-expr -> number .)
-    NOT             reduce using rule 28 (basic-expr -> number .)
-    SCOLO           reduce using rule 28 (basic-expr -> number .)
-    IF              reduce using rule 28 (basic-expr -> number .)
-    FUNCTION        reduce using rule 28 (basic-expr -> number .)
-    VAR             reduce using rule 28 (basic-expr -> number .)
-    ID              reduce using rule 28 (basic-expr -> number .)
-    NUMBER          reduce using rule 28 (basic-expr -> number .)
-    STRING          reduce using rule 28 (basic-expr -> number .)
-    RBRACKET        reduce using rule 28 (basic-expr -> number .)
-    RPAREN          reduce using rule 28 (basic-expr -> number .)
+    GREATER         reduce using rule 27 (basic-expr -> ID .)
+    LESS            reduce using rule 27 (basic-expr -> ID .)
+    GREATER_OR_EQUAL reduce using rule 27 (basic-expr -> ID .)
+    SMALLER_OR_EQUAL reduce using rule 27 (basic-expr -> ID .)
+    COMP            reduce using rule 27 (basic-expr -> ID .)
+    NOT             reduce using rule 27 (basic-expr -> ID .)
+    SCOLO           reduce using rule 27 (basic-expr -> ID .)
+    IF              reduce using rule 27 (basic-expr -> ID .)
+    FUNCTION        reduce using rule 27 (basic-expr -> ID .)
+    VAR             reduce using rule 27 (basic-expr -> ID .)
+    ID              reduce using rule 27 (basic-expr -> ID .)
+    NUMBER          reduce using rule 27 (basic-expr -> ID .)
+    STRING          reduce using rule 27 (basic-expr -> ID .)
+    RBRACKET        reduce using rule 27 (basic-expr -> ID .)
+    RPAREN          reduce using rule 27 (basic-expr -> ID .)
+    PLUS            reduce using rule 27 (basic-expr -> ID .)
+    MINUS           reduce using rule 27 (basic-expr -> ID .)
+    MUL             reduce using rule 27 (basic-expr -> ID .)
+    DIV             reduce using rule 27 (basic-expr -> ID .)
 
 
 state 65
 
-    (27) basic-expr -> variable .
+    (36) comparison-expr -> basic-expr comp-operator basic-expr .
+    (36) comparison-expr -> basic-expr . comp-operator basic-expr
+    (37) comparison-expr -> basic-expr . comp-operator comparison-expr
+    (38) comp-operator -> . GREATER
+    (39) comp-operator -> . LESS
+    (40) comp-operator -> . GREATER_OR_EQUAL
+    (41) comp-operator -> . SMALLER_OR_EQUAL
+    (42) comp-operator -> . COMP
+    (43) comp-operator -> . NOT
 
-    GREATER         reduce using rule 27 (basic-expr -> variable .)
-    LESS            reduce using rule 27 (basic-expr -> variable .)
-    GREATER_OR_EQUAL reduce using rule 27 (basic-expr -> variable .)
-    SMALLER_OR_EQUAL reduce using rule 27 (basic-expr -> variable .)
-    COMP            reduce using rule 27 (basic-expr -> variable .)
-    NOT             reduce using rule 27 (basic-expr -> variable .)
-    SCOLO           reduce using rule 27 (basic-expr -> variable .)
-    IF              reduce using rule 27 (basic-expr -> variable .)
-    FUNCTION        reduce using rule 27 (basic-expr -> variable .)
-    VAR             reduce using rule 27 (basic-expr -> variable .)
-    ID              reduce using rule 27 (basic-expr -> variable .)
-    NUMBER          reduce using rule 27 (basic-expr -> variable .)
-    STRING          reduce using rule 27 (basic-expr -> variable .)
-    RBRACKET        reduce using rule 27 (basic-expr -> variable .)
-    RPAREN          reduce using rule 27 (basic-expr -> variable .)
+    SCOLO           reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    IF              reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    FUNCTION        reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    VAR             reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    ID              reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    NUMBER          reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    STRING          reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    RBRACKET        reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    RPAREN          reduce using rule 36 (comparison-expr -> basic-expr comp-operator basic-expr .)
+    GREATER         shift and go to state 53
+    LESS            shift and go to state 43
+    GREATER_OR_EQUAL shift and go to state 45
+    SMALLER_OR_EQUAL shift and go to state 46
+    COMP            shift and go to state 44
+    NOT             shift and go to state 49
 
+    comp-operator                  shift and go to state 48
 
 state 66
 
-    (38) comparison-expr -> basic-expr comp-operator comparison-expr .
+    (37) comparison-expr -> basic-expr comp-operator comparison-expr .
 
-    SCOLO           reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    IF              reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    FUNCTION        reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    VAR             reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    ID              reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    NUMBER          reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    STRING          reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    RBRACKET        reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
-    RPAREN          reduce using rule 38 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    SCOLO           reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    IF              reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    FUNCTION        reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    VAR             reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    ID              reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    NUMBER          reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    STRING          reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    RBRACKET        reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
+    RPAREN          reduce using rule 37 (comparison-expr -> basic-expr comp-operator comparison-expr .)
 
 
 state 67
 
-    (33) var-assign -> variable EQ basic-expr .
+    (32) var-assign -> variable EQ basic-expr .
+    (34) assignment-expr -> basic-expr . math-operator basic-expr
+    (35) assignment-expr -> basic-expr . math-operator assignment-expr
+    (44) math-operator -> . PLUS
+    (45) math-operator -> . MINUS
+    (46) math-operator -> . MUL
+    (47) math-operator -> . DIV
 
-    SCOLO           reduce using rule 33 (var-assign -> variable EQ basic-expr .)
+    SCOLO           reduce using rule 32 (var-assign -> variable EQ basic-expr .)
+    PLUS            shift and go to state 47
+    MINUS           shift and go to state 52
+    MUL             shift and go to state 50
+    DIV             shift and go to state 51
 
+    math-operator                  shift and go to state 42
 
 state 68
 
-    (34) var-assign -> variable EQ assignment-expr .
+    (33) var-assign -> variable EQ assignment-expr .
 
-    SCOLO           reduce using rule 34 (var-assign -> variable EQ assignment-expr .)
+    SCOLO           reduce using rule 33 (var-assign -> variable EQ assignment-expr .)
 
 
 state 69
 
-    (35) assignment-expr -> identifier math-operator identifier .
-    (35) assignment-expr -> identifier . math-operator identifier
-    (36) assignment-expr -> identifier . math-operator assignment-expr
-    (45) math-operator -> . PLUS
-    (46) math-operator -> . MINUS
-    (47) math-operator -> . MUL
-    (48) math-operator -> . DIV
+    (48) if-statement -> IF LPAREN expression . RPAREN block
+    (49) if-statement -> IF LPAREN expression . RPAREN block else-statement
 
-    SCOLO           reduce using rule 35 (assignment-expr -> identifier math-operator identifier .)
-    PLUS            shift and go to state 54
-    MINUS           shift and go to state 57
-    MUL             shift and go to state 55
-    DIV             shift and go to state 56
+    RPAREN          shift and go to state 70
 
-    math-operator                  shift and go to state 53
 
 state 70
 
-    (36) assignment-expr -> identifier math-operator assignment-expr .
+    (48) if-statement -> IF LPAREN expression RPAREN . block
+    (49) if-statement -> IF LPAREN expression RPAREN . block else-statement
+    (15) block -> . LBRACKET RBRACKET
+    (16) block -> . LBRACKET statement-list RBRACKET
 
-    SCOLO           reduce using rule 36 (assignment-expr -> identifier math-operator assignment-expr .)
+    LBRACKET        shift and go to state 16
 
+    block                          shift and go to state 71
 
 state 71
 
-    (30) identifier -> number .
+    (48) if-statement -> IF LPAREN expression RPAREN block .
+    (49) if-statement -> IF LPAREN expression RPAREN block . else-statement
+    (50) else-statement -> . ELSE block
 
-    PLUS            reduce using rule 30 (identifier -> number .)
-    MINUS           reduce using rule 30 (identifier -> number .)
-    MUL             reduce using rule 30 (identifier -> number .)
-    DIV             reduce using rule 30 (identifier -> number .)
-    SCOLO           reduce using rule 30 (identifier -> number .)
+    IF              reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    FUNCTION        reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    VAR             reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    ID              reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    NUMBER          reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    STRING          reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    RBRACKET        reduce using rule 48 (if-statement -> IF LPAREN expression RPAREN block .)
+    ELSE            shift and go to state 73
 
+    else-statement                 shift and go to state 72
 
 state 72
 
-    (49) if-statement -> IF LPAREN expression . RPAREN block
-    (50) if-statement -> IF LPAREN expression . RPAREN block else-statement
+    (49) if-statement -> IF LPAREN expression RPAREN block else-statement .
 
-    RPAREN          shift and go to state 73
+    IF              reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    FUNCTION        reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    VAR             reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    ID              reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    NUMBER          reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    STRING          reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
+    RBRACKET        reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
 
 
 state 73
 
-    (49) if-statement -> IF LPAREN expression RPAREN . block
-    (50) if-statement -> IF LPAREN expression RPAREN . block else-statement
+    (50) else-statement -> ELSE . block
     (15) block -> . LBRACKET RBRACKET
     (16) block -> . LBRACKET statement-list RBRACKET
 
@@ -1231,53 +1243,13 @@ state 73
 
 state 74
 
-    (49) if-statement -> IF LPAREN expression RPAREN block .
-    (50) if-statement -> IF LPAREN expression RPAREN block . else-statement
-    (51) else-statement -> . ELSE block
+    (50) else-statement -> ELSE block .
 
-    IF              reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    FUNCTION        reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    VAR             reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    ID              reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    NUMBER          reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    STRING          reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    RBRACKET        reduce using rule 49 (if-statement -> IF LPAREN expression RPAREN block .)
-    ELSE            shift and go to state 76
-
-    else-statement                 shift and go to state 75
-
-state 75
-
-    (50) if-statement -> IF LPAREN expression RPAREN block else-statement .
-
-    IF              reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    FUNCTION        reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    VAR             reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    ID              reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    NUMBER          reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    STRING          reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-    RBRACKET        reduce using rule 50 (if-statement -> IF LPAREN expression RPAREN block else-statement .)
-
-
-state 76
-
-    (51) else-statement -> ELSE . block
-    (15) block -> . LBRACKET RBRACKET
-    (16) block -> . LBRACKET statement-list RBRACKET
-
-    LBRACKET        shift and go to state 16
-
-    block                          shift and go to state 77
-
-state 77
-
-    (51) else-statement -> ELSE block .
-
-    IF              reduce using rule 51 (else-statement -> ELSE block .)
-    FUNCTION        reduce using rule 51 (else-statement -> ELSE block .)
-    VAR             reduce using rule 51 (else-statement -> ELSE block .)
-    ID              reduce using rule 51 (else-statement -> ELSE block .)
-    NUMBER          reduce using rule 51 (else-statement -> ELSE block .)
-    STRING          reduce using rule 51 (else-statement -> ELSE block .)
-    RBRACKET        reduce using rule 51 (else-statement -> ELSE block .)
+    IF              reduce using rule 50 (else-statement -> ELSE block .)
+    FUNCTION        reduce using rule 50 (else-statement -> ELSE block .)
+    VAR             reduce using rule 50 (else-statement -> ELSE block .)
+    ID              reduce using rule 50 (else-statement -> ELSE block .)
+    NUMBER          reduce using rule 50 (else-statement -> ELSE block .)
+    STRING          reduce using rule 50 (else-statement -> ELSE block .)
+    RBRACKET        reduce using rule 50 (else-statement -> ELSE block .)
 

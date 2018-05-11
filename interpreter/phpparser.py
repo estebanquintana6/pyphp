@@ -229,22 +229,11 @@ def p_string(p):
     p[0] = Node('string', None, p[1], [T])
 
 
-def p_basic(p):
+def p_basic2(p):
     """
-    basic-expr : variable
-                | number
-                | string
+    basic-expr : ID
     """
-    v = Node('BASIC', p[1])
-    p[0] = Node('basic-expr', p[1].value, [v])
-
-
-def p_id(p):
-    """
-    identifier :  ID
-    """
-    T = Node('identifier', p[1])
-
+    T = Node('BASIC', p[1])
     if stack.find(p[1]) == -1:
         p[0] = Node('identifier', None, [T])
     else:
@@ -252,21 +241,13 @@ def p_id(p):
         print temp.value
         p[0] = Node('identifier', temp.value, [T])
 
-
-def p_id(p):
+def p_basic(p):
     """
-    identifier :  string
+    basic-expr : number
+                | string
     """
-    T = Node('ID', p[1])
-    p[0] = Node('identifier', p[1].value , [T])
-
-
-def p_id(p):
-    """
-    identifier :  number
-    """
-    T = Node('ID', p[1])
-    p[0] = Node('identifier', p[1].value, [T])
+    v = Node('BASIC', p[1])
+    p[0] = Node('basic-expr', p[1].value, [v])
 
 
 def p_number(p):
@@ -323,8 +304,8 @@ def p_variable_assignment(p):
 
 def p_assignment_expression(p):
     """
-    assignment-expr : identifier  math-operator identifier
-                     | identifier math-operator assignment-expr
+    assignment-expr : basic-expr  math-operator basic-expr
+                     | basic-expr math-operator assignment-expr
     """
 
     p[0] = Node('assignment-expr', None, None, [p[1], p[2], p[3]])
